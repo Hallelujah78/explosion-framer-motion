@@ -41,11 +41,11 @@
 
 - slope of line = (y2 - y1)/(x2-x1) = m
 - equation of a line: y = mx + b
+- rearrange: y - mx = b
+- b is where x is zero or where the line intercepts the y axis
+  (-5, 10) and (-3, 4)
+  slope = -6/-8 = 0.75
 
-(-5, 10) and (-3, 4)
-slope = -6/-8 = 0.75
-
-when b is zero (slope intercept):
 10 = 0.75 x -5 + b
 10 --3.75 = b
 b = 13.75
@@ -55,3 +55,7 @@ if x=2100
 
 y = 0.75(2100) + 13.75
 y = 1588.75
+
+finding y for a value of x
+y = mx + b
+=> mx + b = y

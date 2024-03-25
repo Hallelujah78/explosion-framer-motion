@@ -12,6 +12,7 @@ const App: React.FC = () => {
 export default App;
 
 const Wrapper = styled.div`
+  overflow: hidden;
   min-height: 100vh;
   position: relative;
   display: grid;
