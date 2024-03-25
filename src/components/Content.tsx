@@ -5,8 +5,8 @@ import { boxes } from "../data/data";
 const Content: React.FC = () => {
   return (
     <Wrapper>
-      {boxes.map((content) => {
-        return <Box content={content} />;
+      {boxes.map((content, index) => {
+        return <Box key={index} content={content} />;
       })}
     </Wrapper>
   );
