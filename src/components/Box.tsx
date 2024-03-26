@@ -23,20 +23,36 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
         currentRef.getBoundingClientRect().width / 2;
       coords.y =
         currentRef.getBoundingClientRect().y +
-        currentRef.getBoundingClientRect().width / 2;
+        currentRef.getBoundingClientRect().height / 2;
       setCoords(coords);
       if (containCenterCoords !== undefined) {
         const { x: containX, y: containY } = containCenterCoords;
         // containCoords will be point 1, coords will be point 2
-        const slope = (containY - coords.y) / (containX - coords.x);
+        const slope = (-containY - -coords.y) / (containX - coords.x);
         // equation of a line: y - mx = b
-        // console.log(slope);
-        const yIntercept = containY - slope * containX;
-        // console.log(yIntercept);
+        const yIntercept = -containY - slope * containX;
         // if x is -200
-        const newY = -700 * slope + yIntercept;
-        const newCoords = { x: -700, y: newY };
-        console.log(newCoords.x, newCoords.y);
+        let newX: number;
+        let newY: number;
+        console.log(slope);
+        if (slope < -1 && coords.x < containX) {
+          // choose y and then calc y + calc x from y
+          // y = mx + b
+          newY =
+            -currentRef.getBoundingClientRect().y +
+            currentRef.getBoundingClientRect().height / 2;
+          // y = mx + b => -mx = -y + b => mx = y - b => x = (y-b)/m
+          newX = (newY - yIntercept) / slope;
+        } else {
+          newX =
+            currentRef.getBoundingClientRect().x +
+            currentRef.getBoundingClientRect().width / 2;
+          // y = mx + b
+          newY = newX * slope - yIntercept;
+        }
+
+        const newCoords = { x: newX, y: -newY };
+
         setMoveCoords(newCoords);
       }
     }
@@ -53,8 +69,8 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
         rotateY: 0,
         rotateZ: 0,
         scale: 1,
-        // x: 0,
-        // y: 0,
+        x: 0,
+        y: 0,
       }}
       animate={{
         rotate: 360,
@@ -64,7 +80,7 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
         scale: 1.5,
         x: moveCoords?.x,
         y: moveCoords?.y,
-        transition: { duration: 10 },
+        transition: { duration: 15 },
       }}
     >
       <div className="center">

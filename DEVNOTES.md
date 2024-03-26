@@ -59,3 +59,23 @@ y = 1588.75
 finding y for a value of x
 y = mx + b
 => mx + b = y
+
+# The reason this isn't working as intended
+
+- The y value increases in the downward direction!
+  - I thought changing the sign of the slope would correct this but nope
+  - changing all values of y to be negative seems to correct, but need to confirm
+  - have tested on the first element only and it appears to be moving in the desired direction
+
+# Do we calculate the new x coord or the new y coord?
+
+- when moving the element, our Box, we want to calculate new coords to move it to so that it is offscreen
+- since we have the equation of the line, we can pick a new x or y value and calculate the other coordinate
+- if our Box is in the top left of our container, the slope will be larger than if our Box is in the middle of our container
+  - For a box in the top left, we would be best to pick a y value and calculate the x value
+  - for a box in the middle of our container, we should pick an x value and calculate the y value
+- intuitively this makes sense, but imagine our top left Box
+  - this box wants to move upwards more than it wants to move leftwards
+    - the slope will be greater than 1
+    - if we pick an x value here and calculate y, our calculated y value might be relatively enormous
+    - if we pick a y value, we can pick a value, in fact we can calculate a y value (minus y coord minus height of Box?) that will move the box offscreen while
