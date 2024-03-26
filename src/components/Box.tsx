@@ -35,46 +35,42 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
         const slope = -(containY - coords!.y) / (containX - coords!.x);
         // equation of a line: y - mx = b
         const yIntercept = containY + slope * containX;
-        // if x is -200
 
         if (slope >= 1 && coords!.x < containX && coords!.y > containY) {
-          console.log("slope:  " + slope);
-          console.log("bottom left corner");
-          // choose y and then calc y + calc x from y
-          // y = mx + b
-          newY = 480;
-          // coords!.y +
+          newY =
+            coords!.y +
+            currentRef.getBoundingClientRect().y +
+            currentRef.getBoundingClientRect().height / 2;
+          newX = (newY - yIntercept) / -slope - coords!.x;
+          // console.log("oldX: ", coords!.x, "\nnewX: ", newX);
+          // console.log("oldY: ", coords!.y, "\nnewY: ", newY);
+          newY = newY - coords!.y;
+        } else if (slope <= 1 && coords!.x > containX && coords!.y > containY) {
+          newY =
+            coords!.y +
+            currentRef.getBoundingClientRect().y +
+            currentRef.getBoundingClientRect().height / 2;
+          newX = (newY - yIntercept) / -slope - coords!.x;
+          newY = newY - coords!.y;
+        } else if (
+          // this is not working right now
+          slope <= -1 &&
+          coords!.x < containX &&
+          coords!.y < containY
+        ) {
+          // console.log("outer height: ", window.outerHeight);
+          newY = -window.outerHeight / 2 + coords!.y;
+          // -coords!.y -
           // currentRef.getBoundingClientRect().y +
           // currentRef.getBoundingClientRect().height / 2;
-          // y = mx + b => -mx = -y + b => mx = y - b => x = (y-b)/m
           newX = (newY - yIntercept) / -slope - coords!.x;
-          console.log("oldX: ", coords!.x, "\nnewX: ", newX);
-          console.log("oldY: ", coords!.y, "\nnewY: ", newY);
-          // } else if (slope < 1 && coords!.x > containX && coords!.y < containY) {
-          //   //
-          //   newY =
-          //     -coords!.y +
-          //     currentRef.getBoundingClientRect().y +
-          //     currentRef.getBoundingClientRect().height / 2;
-
-          //   newX = (newY - yIntercept) / slope - coords!.x;
-          // } else if (slope > 0 && coords!.x < containX && coords!.y > containY) {
-          //   console.log("slope:  " + slope);
-          //   console.log("top left corner");
-
-          //   newY =
-          //     coords!.y +
-          //     currentRef.getBoundingClientRect().y +
-          //     currentRef.getBoundingClientRect().height / 2;
-
-          //   newX = (newY - yIntercept) / slope;
-          //   console.log("oldX: ", coords!.x, "\nnewX: ", newX);
-          //   console.log("oldY: ", coords!.y, "\nnewY: ", newY);
-          //
-        }
-        if (newY) {
           newY = newY - coords!.y;
         }
+        // if (newY) {
+        //   newY = newY - coords!.y;
+        // }
+
+        console.log(newY);
         const newCoords = { x: newX, y: newY };
         setMoveCoords(newCoords);
       }
@@ -92,16 +88,15 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
         rotateY: 0,
         rotateZ: 0,
         scale: 1,
-        x: 0,
-        y: 0,
-        // x: coords?.x,
-        // y: coords?.y,
+        // x: 0,
+        // y: 0,
+        x: coords?.x,
+        y: coords?.y,
       }}
       animate={{
-        // rotate: 360,
+        rotate: -360,
         // rotateX: 360,
         // rotateY: 360,
-        // rotateZ: 360,
         scale: 1,
         x: moveCoords?.x,
         y: moveCoords?.y,
@@ -119,6 +114,8 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
 export default Box;
 
 const Wrapper = styled.article`
+  background-color: red;
+  border-radius: 50%;
   position: relative;
   display: inline-block;
   border: green solid 1px;
