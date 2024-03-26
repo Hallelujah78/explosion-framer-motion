@@ -16,43 +16,66 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
   useEffect(() => {
     const currentRef = selfRef.current;
 
-    const coords = { x: 0, y: 0 };
+    const tempCoords = { x: 0, y: 0 };
     if (currentRef) {
-      coords.x =
+      tempCoords.x =
         currentRef.getBoundingClientRect().x +
         currentRef.getBoundingClientRect().width / 2;
-      coords.y =
+      tempCoords.y =
         currentRef.getBoundingClientRect().y +
         currentRef.getBoundingClientRect().height / 2;
-      setCoords(coords);
+
+      setCoords(tempCoords);
+      let newX = 0;
+      let newY = 0;
       if (containCenterCoords !== undefined) {
         const { x: containX, y: containY } = containCenterCoords;
+
         // containCoords will be point 1, coords will be point 2
-        const slope = (-containY - -coords.y) / (containX - coords.x);
+        const slope = -(containY - coords!.y) / (containX - coords!.x);
         // equation of a line: y - mx = b
-        const yIntercept = -containY - slope * containX;
+        const yIntercept = containY + slope * containX;
         // if x is -200
-        let newX: number;
-        let newY: number;
-        console.log(slope);
-        if (slope < -1 && coords.x < containX) {
+
+        if (slope >= 1 && coords!.x < containX && coords!.y > containY) {
+          console.log("slope:  " + slope);
+          console.log("bottom left corner");
           // choose y and then calc y + calc x from y
           // y = mx + b
-          newY =
-            -currentRef.getBoundingClientRect().y +
-            currentRef.getBoundingClientRect().height / 2;
+          newY = 480;
+          // coords!.y +
+          // currentRef.getBoundingClientRect().y +
+          // currentRef.getBoundingClientRect().height / 2;
           // y = mx + b => -mx = -y + b => mx = y - b => x = (y-b)/m
-          newX = (newY - yIntercept) / slope;
-        } else {
-          newX =
-            currentRef.getBoundingClientRect().x +
-            currentRef.getBoundingClientRect().width / 2;
-          // y = mx + b
-          newY = newX * slope - yIntercept;
+          newX = (newY - yIntercept) / -slope - coords!.x;
+          console.log("oldX: ", coords!.x, "\nnewX: ", newX);
+          console.log("oldY: ", coords!.y, "\nnewY: ", newY);
+          // } else if (slope < 1 && coords!.x > containX && coords!.y < containY) {
+          //   //
+          //   newY =
+          //     -coords!.y +
+          //     currentRef.getBoundingClientRect().y +
+          //     currentRef.getBoundingClientRect().height / 2;
+
+          //   newX = (newY - yIntercept) / slope - coords!.x;
+          // } else if (slope > 0 && coords!.x < containX && coords!.y > containY) {
+          //   console.log("slope:  " + slope);
+          //   console.log("top left corner");
+
+          //   newY =
+          //     coords!.y +
+          //     currentRef.getBoundingClientRect().y +
+          //     currentRef.getBoundingClientRect().height / 2;
+
+          //   newX = (newY - yIntercept) / slope;
+          //   console.log("oldX: ", coords!.x, "\nnewX: ", newX);
+          //   console.log("oldY: ", coords!.y, "\nnewY: ", newY);
+          //
         }
-
-        const newCoords = { x: newX, y: -newY };
-
+        if (newY) {
+          newY = newY - coords!.y;
+        }
+        const newCoords = { x: newX, y: newY };
         setMoveCoords(newCoords);
       }
     }
@@ -71,16 +94,18 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
         scale: 1,
         x: 0,
         y: 0,
+        // x: coords?.x,
+        // y: coords?.y,
       }}
       animate={{
-        rotate: 360,
-        rotateX: 360,
-        rotateY: 360,
-        rotateZ: 360,
-        scale: 1.5,
+        // rotate: 360,
+        // rotateX: 360,
+        // rotateY: 360,
+        // rotateZ: 360,
+        scale: 1,
         x: moveCoords?.x,
         y: moveCoords?.y,
-        transition: { duration: 15 },
+        transition: { duration: 5 },
       }}
     >
       <div className="center">

@@ -74,8 +74,22 @@ y = mx + b
 - if our Box is in the top left of our container, the slope will be larger than if our Box is in the middle of our container
   - For a box in the top left, we would be best to pick a y value and calculate the x value
   - for a box in the middle of our container, we should pick an x value and calculate the y value
-- intuitively this makes sense, but imagine our top left Box
+- intuitively this makes sense. Imagine our top left Box
   - this box wants to move upwards more than it wants to move leftwards
     - the slope will be greater than 1
     - if we pick an x value here and calculate y, our calculated y value might be relatively enormous
-    - if we pick a y value, we can pick a value, in fact we can calculate a y value (minus y coord minus height of Box?) that will move the box offscreen while
+    - if we pick a y value, we can pick a value, in fact we can calculate a y value (minus y coord minus height of Box?) that will move the box offscreen
+
+# Y increasing in downward direction
+
+- this is confusing
+- need to get clear on how to work around this
+- not sure we can use equation of the line with Y increasing in downward direction - too mind melting, probably makes code unreadable/unmaintainable
+
+---
+
+0, 0
+
+25, 25 75, 25
+50,50
+25, 75 75, 75
