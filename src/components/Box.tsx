@@ -1,13 +1,9 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { ShapeProps } from "../models/types";
 
-interface BoxProps {
-  content: number;
-  containCenterCoords: { x: number; y: number } | undefined;
-}
-
-const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
+const Box: React.FC<ShapeProps> = ({ containCenterCoords }) => {
   const selfRef = useRef<HTMLElement | null>(null);
   const [coords, setCoords] = useState<{ x: number; y: number }>();
 
@@ -26,6 +22,7 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
         currentRef.getBoundingClientRect().height / 2;
 
       setCoords(tempCoords);
+
       let newX = 0;
       let newY = 0;
       if (containCenterCoords !== undefined) {

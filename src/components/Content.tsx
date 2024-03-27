@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
 import Box from "./Box";
+import Circle from "./Circle";
+import CircleHook from "./CircleHook";
 import { boxes } from "../data/data";
 
 const Content: React.FC = () => {
@@ -28,7 +30,7 @@ const Content: React.FC = () => {
     <Wrapper ref={containerRef}>
       {boxes.map((content, index) => {
         return (
-          <Box
+          <CircleHook
             key={index}
             content={content}
             containCenterCoords={containCenterCoords}
