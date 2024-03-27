@@ -58,7 +58,7 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
           coords!.x < containX &&
           coords!.y < containY
         ) {
-          newY = -window.outerHeight / 2 + coords!.y;
+          newY = -window.innerHeight / 2 + coords!.y;
 
           newX = (newY - yIntercept) / -slope - coords!.x;
           newY = newY - coords!.y;
@@ -84,7 +84,7 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
           coords!.y < containY
         ) {
           // console.log("outer height: ", window.outerHeight);
-          newY = -window.outerHeight / 2 + coords!.y;
+          newY = -window.innerHeight / 2 + coords!.y;
           // -coords!.y -
           // currentRef.getBoundingClientRect().y +
           // currentRef.getBoundingClientRect().height / 2;
@@ -126,13 +126,18 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
         scale: 1,
         x: moveCoords?.x,
         y: moveCoords?.y,
-        transition: { duration: 20 },
+        transition: {
+          delay: 0.5,
+          duration: 3,
+          repeat: 5,
+          repeatType: "reverse",
+        },
       }}
     >
       <div className="center">
-        {coords ? coords.x : null}
+        {/* {coords ? coords.x : null}
         <br />
-        {coords ? coords.y : null}
+        {coords ? coords.y : null} */}
       </div>
     </Wrapper>
   );
@@ -140,11 +145,12 @@ const Box: React.FC<BoxProps> = ({ containCenterCoords }) => {
 export default Box;
 
 const Wrapper = styled.article`
+  /* border-radius: 50%; */
   background-color: lightgreen;
   position: relative;
   display: inline-block;
-  height: 5rem;
-  width: 5rem;
+  height: 3rem;
+  width: 3rem;
   .center {
     width: 100%;
     height: 100%;

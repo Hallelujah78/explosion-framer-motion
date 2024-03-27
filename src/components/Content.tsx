@@ -41,14 +41,12 @@ const Content: React.FC = () => {
 export default Content;
 
 const Wrapper = styled.section`
-  border: red solid 1px;
   position: relative;
   min-height: 80vh;
   width: fit-content;
   margin: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  border: red solid 1px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   place-content: center;
   gap: 1rem;
 `;
