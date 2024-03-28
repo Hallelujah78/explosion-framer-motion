@@ -74,6 +74,31 @@ const animateGrid = (
       newY = -window.innerHeight / 2 + coords!.y;
       newX = (newY - yIntercept) / -slope - coords!.x;
       newY = newY - coords!.y;
+    } else if (slope === 0 && coords!.x < containX && coords!.y === containY) {
+      // middle left
+      newX = -(window.innerWidth / 2);
+      // y = mx + b;
+      const variance = Math.random();
+      console.log("variance: ", variance);
+      if (variance > 0.5) {
+        newY = -variance * 500;
+      } else {
+        newY = variance * 500;
+
+        // coords!.y;
+      }
+      // newY = newY - coords!.x;
+    } else if (slope === 0 && coords!.x > containX && coords!.y === containY) {
+      // middle left
+      newX = window.innerWidth / 2;
+      // y = mx + b;
+      const variance = Math.random();
+      console.log("variance: ", variance);
+      if (variance > 0.5) {
+        newY = -variance * 500;
+      } else {
+        newY = variance * 500;
+      }
     }
 
     console.log(newY);

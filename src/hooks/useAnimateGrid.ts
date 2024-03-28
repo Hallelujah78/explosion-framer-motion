@@ -10,10 +10,10 @@ const useAnimateGrid = (
   const [moveCoords, setMoveCoords] = useState<Coords>();
 
   useEffect(() => {
-    if (containCenterCoords !== undefined) {
-      containCenterCoords.x = 800;
-      containCenterCoords.y = 300;
-    }
+    // if (containCenterCoords !== undefined) {
+    //   containCenterCoords.x = 800;
+    //   containCenterCoords.y = 300;
+    // }
     const currentRef = selfRef?.current;
     console.log(containCenterCoords?.x, containCenterCoords?.y);
     const tempCoords = { x: 0, y: 0 };
