@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import Box from "./Box";
 import Circle from "./Circle";
 import CircleHook from "./CircleHook";
@@ -27,10 +28,15 @@ const Content: React.FC = () => {
   }, []);
 
   return (
-    <Wrapper ref={containerRef}>
+    <Wrapper
+      as={motion.section}
+      ref={containerRef}
+      animate={{ rotate: 360 }}
+      transition={{ duration: 3, delay: 0.5, repeat: 5 }}
+    >
       {boxes.map((content, index) => {
         return (
-          <CircleHook
+          <Box
             key={index}
             content={content}
             containCenterCoords={containCenterCoords}
@@ -48,7 +54,7 @@ const Wrapper = styled.section`
   width: fit-content;
   margin: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   place-content: center;
-  gap: 1rem;
+  gap: 1px;
 `;

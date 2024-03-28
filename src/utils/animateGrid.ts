@@ -12,6 +12,7 @@ const animateGrid = (
 
     // containCoords will be point 1, coords will be point 2
     const slope = -(containY - coords!.y) / (containX - coords!.x);
+    console.log(slope);
     // equation of a line: y - mx = b
     const yIntercept = containY + slope * containX;
 
@@ -98,6 +99,34 @@ const animateGrid = (
         newY = -variance * 500;
       } else {
         newY = variance * 500;
+      }
+    } else if (
+      (slope === Infinity || slope === -Infinity || Number.isNaN(slope)) &&
+      coords!.x === containX &&
+      coords!.y <= containY
+    ) {
+      // middle left
+      newY = -window.innerHeight / 2;
+      // y = mx + b;
+      const variance = Math.random();
+      console.log("variance: ", variance);
+      if (variance > 0.5) {
+        newX = -variance * 500;
+      } else {
+        newX = variance * 500;
+      }
+    } else {
+      {
+        // middle left
+        newY = window.innerHeight / 2;
+        // y = mx + b;
+        const variance = Math.random();
+        console.log("variance: ", variance);
+        if (variance > 0.5) {
+          newX = -variance * 500;
+        } else {
+          newX = variance * 500;
+        }
       }
     }
 

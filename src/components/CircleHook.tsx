@@ -47,8 +47,8 @@ const Wrapper = styled.article`
   background-color: lightgreen;
   position: relative;
   display: inline-block;
-  height: 3rem;
-  width: 3rem;
+  height: 1rem;
+  width: 1rem;
   .center {
     width: 100%;
     height: 100%;
