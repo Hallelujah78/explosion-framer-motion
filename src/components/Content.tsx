@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import Box from "./Box";
-import Circle from "./Circle";
-import CircleHook from "./CircleHook";
+// import Box from "./Box";
+// import Circle from "./Circle";
+import CircleHookClick from "./CircleHookClick";
 import { boxes } from "../data/data";
 import { Coords } from "../models/types";
 
@@ -15,26 +15,18 @@ const Content: React.FC = () => {
     const currentRef = containerRef.current;
     const coords = { x: 0, y: 0 };
     if (currentRef) {
-      coords.x =
-        currentRef.getBoundingClientRect().x +
-        currentRef.getBoundingClientRect().width / 2;
-      coords.y =
-        currentRef.getBoundingClientRect().y +
-        currentRef.getBoundingClientRect().height / 2;
+      const { x, y, width, height } = currentRef.getBoundingClientRect();
+      coords.x = x + width / 2;
+      coords.y = y + height / 2;
       setContainCenterCoords(coords);
     }
   }, []);
 
   return (
-    <Wrapper
-      as={motion.section}
-      ref={containerRef}
-      // animate={{ rotate: 360 }}
-      // transition={{ duration: 3, delay: 0.5, repeat: 5 }}
-    >
+    <Wrapper as={motion.section} ref={containerRef}>
       {boxes.map((content, index) => {
         return (
-          <CircleHook
+          <CircleHookClick
             key={index}
             content={content}
             containCenterCoords={containCenterCoords}

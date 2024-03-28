@@ -1,15 +1,16 @@
 import { Coords } from "../models/types";
 
-const animateGrid = (
-  currentRef: HTMLElement,
-  containCenterCoords: Coords,
+const animateGridClick = (
+  currentRef: HTMLElement | null,
+  centerCoords: Coords,
   coords: Coords
 ) => {
   let newX = 0;
   let newY = 0;
-  if (containCenterCoords !== undefined) {
-    const { x: containX, y: containY } = containCenterCoords;
 
+  if (centerCoords !== undefined && currentRef) {
+    const { x: containX, y: containY } = centerCoords;
+    console.log(containX, containY);
     // containCoords will be point 1, coords will be point 2
     const slope = -(containY - coords!.y) / (containX - coords!.x);
     // console.log(slope);
@@ -136,4 +137,4 @@ const animateGrid = (
   }
 };
 
-export default animateGrid;
+export default animateGridClick;
