@@ -5,13 +5,11 @@ import Box from "./Box";
 import Circle from "./Circle";
 import CircleHook from "./CircleHook";
 import { boxes } from "../data/data";
+import { Coords } from "../models/types";
 
 const Content: React.FC = () => {
   const containerRef = useRef<HTMLElement | null>(null);
-  const [containCenterCoords, setContainCenterCoords] = useState<{
-    x: number;
-    y: number;
-  }>();
+  const [containCenterCoords, setContainCenterCoords] = useState<Coords>();
 
   useEffect(() => {
     const currentRef = containerRef.current;
@@ -31,12 +29,12 @@ const Content: React.FC = () => {
     <Wrapper
       as={motion.section}
       ref={containerRef}
-      animate={{ rotate: 360 }}
-      transition={{ duration: 3, delay: 0.5, repeat: 5 }}
+      // animate={{ rotate: 360 }}
+      // transition={{ duration: 3, delay: 0.5, repeat: 5 }}
     >
       {boxes.map((content, index) => {
         return (
-          <Box
+          <CircleHook
             key={index}
             content={content}
             containCenterCoords={containCenterCoords}
@@ -54,7 +52,8 @@ const Wrapper = styled.section`
   width: fit-content;
   margin: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   place-content: center;
   gap: 1px;
+  border: red solid 1px;
 `;

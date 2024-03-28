@@ -2,17 +2,19 @@ import { Coords } from "../models/types";
 
 const animateGrid = (
   currentRef: HTMLElement,
+  // centerCoords: Coords,
   containCenterCoords: Coords,
   coords: Coords
 ) => {
+  // console.log(containCenterCoords);
   let newX = 0;
   let newY = 0;
   if (containCenterCoords !== undefined) {
     const { x: containX, y: containY } = containCenterCoords;
-
+    // console.log(containX, containY);
     // containCoords will be point 1, coords will be point 2
     const slope = -(containY - coords!.y) / (containX - coords!.x);
-    console.log(slope);
+    // console.log(slope);
     // equation of a line: y - mx = b
     const yIntercept = containY + slope * containX;
 
@@ -80,7 +82,7 @@ const animateGrid = (
       newX = -(window.innerWidth / 2);
       // y = mx + b;
       const variance = Math.random();
-      console.log("variance: ", variance);
+      // console.log("variance: ", variance);
       if (variance > 0.5) {
         newY = -variance * 500;
       } else {
@@ -94,7 +96,7 @@ const animateGrid = (
       newX = window.innerWidth / 2;
       // y = mx + b;
       const variance = Math.random();
-      console.log("variance: ", variance);
+      // console.log("variance: ", variance);
       if (variance > 0.5) {
         newY = -variance * 500;
       } else {
@@ -109,7 +111,7 @@ const animateGrid = (
       newY = -window.innerHeight / 2;
       // y = mx + b;
       const variance = Math.random();
-      console.log("variance: ", variance);
+      // console.log("variance: ", variance);
       if (variance > 0.5) {
         newX = -variance * 500;
       } else {
@@ -121,7 +123,7 @@ const animateGrid = (
         newY = window.innerHeight / 2;
         // y = mx + b;
         const variance = Math.random();
-        console.log("variance: ", variance);
+        // console.log("variance: ", variance);
         if (variance > 0.5) {
           newX = -variance * 500;
         } else {
@@ -130,7 +132,7 @@ const animateGrid = (
       }
     }
 
-    console.log(newY);
+    // console.log(newY);
     const newCoords = { x: newX, y: newY };
     return newCoords;
   }

@@ -94,7 +94,7 @@ const Box: React.FC<ShapeProps> = ({ containCenterCoords }) => {
           newY = newY - coords!.y;
         }
 
-        console.log(newY);
+        // console.log(newY);
         const newCoords = { x: newX, y: newY };
         setMoveCoords(newCoords);
       }

@@ -6,7 +6,12 @@ import useAnimateGrid from "../hooks/useAnimateGrid";
 
 const CircleHook: React.FC<ShapeProps> = ({ containCenterCoords }) => {
   const selfRef = useRef<HTMLElement | null>(null);
-  const [coords, moveCoords] = useAnimateGrid(selfRef, containCenterCoords);
+
+  const [coords, moveCoords] = useAnimateGrid(
+    selfRef,
+    containCenterCoords,
+    true
+  );
 
   return (
     <Wrapper
@@ -31,7 +36,7 @@ const CircleHook: React.FC<ShapeProps> = ({ containCenterCoords }) => {
         transition: {
           delay: 0.5,
           duration: 3,
-          repeat: 5,
+          repeat: 1,
           repeatType: "reverse",
         },
       }}
