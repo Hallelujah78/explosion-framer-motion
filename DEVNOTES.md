@@ -86,10 +86,42 @@ y = mx + b
 - need to get clear on how to work around this
 - not sure we can use equation of the line with Y increasing in downward direction - too mind melting, probably makes code unreadable/unmaintainable
 
----
+## Movement of Elements
 
-0, 0
+- at the moment, we are calculating a new x value and then calculating the new y value using the equation of a line formula.
+- the result is that the elements move different distances when being translated
+- given the animations have a fixed duration, this means the elements move at different velocities
+- a solution that uses fixed distance so that each element moves at the same speed is probably better?
+- something like:
+  - if width > height => use width, else use height
 
-25, 25 75, 25
-50,50
-25, 75 75, 75
+## What about using vector math?
+
+- point P is (483, 212)
+- point Q (for qlick) is (515, 374)
+- we want QP = (483-515, 212-374) = (-32, -162)
+- since we have a slope, m, the direction vector is (1, m)
+  - it moves m pixels in y for every 1 pixel in x
+- we need to find the magnitude of the direction vector:
+- I think the slope for our example is -5.1934
+- formula for mag of direction vector is:
+  (x^2 + y^2)^1/2
+  - (note ^1/2 is square root)
+- so:
+  (1^2 + -5.1934^2)^1/2 = (27.97140356)^1/2 = 5.288799822 (magnitude)
+
+- next, we normalize the direction vector to be unit length so you divide the direction vector by the magnitude:
+- N = (1, m) / magnitude = (1, -5.1934) / 5.288799822 =
+  (1/5.288799822, -5.1934/5.288799822 )
+- now we can write the equation of the line in parameterized format:
+
+f(t) = A + t\*N
+
+- where t is a unit of distance and N is our direction vector divided by the magnitude. A is our original point (483, 212) we want to translate
+- let's say we use the viewport width as our value for t:
+  new point = (483, 212) + 1030*(1/5.288799822, -5.1934/5.288799822)
+  = (483, 212) + (195, -1011)
+  (t*N has been rounded)
+  = (678, -799)
+  => this doesn't seem correct since x must decrease, not increase
+  => remember, we have reversed the sign of our slope, so it is actually 5.1934

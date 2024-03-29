@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import { motion } from "framer-motion";
-import { useRef } from "react";
+import { motion, useAnimationControls } from "framer-motion";
+import { useRef, useEffect } from "react";
 import { ShapeProps } from "../models/types";
 import useAnimateGridClick from "../hooks/useAnimateGridClick";
 
 const CircleHookClick: React.FC<ShapeProps> = () => {
   const selfRef = useRef<HTMLElement | null>(null);
   const [coords, moveCoords] = useAnimateGridClick(selfRef);
+  const controls = useAnimationControls();
 
   const variants = {
     start: {
@@ -15,30 +16,34 @@ const CircleHookClick: React.FC<ShapeProps> = () => {
       rotateY: 0,
       rotateZ: 0,
       scale: 1,
-      x: coords?.x,
-      y: coords?.y,
+      x: 0,
+      y: 0,
     },
     move: {
       rotate: -360,
       scale: 1,
       x: moveCoords?.x,
       y: moveCoords?.y,
-      transition: {
+    },
+  };
+
+  useEffect(() => {
+    void controls.start("move");
+  }, [moveCoords, controls]);
+
+  return (
+    <Wrapper
+      variants={variants}
+      id="box"
+      transition={{
         delay: 0.5,
         duration: 3,
         repeat: 1,
         repeatType: "reverse",
-      },
-    },
-  };
-
-  return (
-    <Wrapper
-      id="box"
+      }}
       ref={selfRef}
-      as={motion.article}
       initial="start"
-      animate={moveCoords ? "move" : "start"}
+      animate={controls}
     >
       <div className="center">
         {coords ? coords.x : null}
@@ -50,7 +55,7 @@ const CircleHookClick: React.FC<ShapeProps> = () => {
 };
 export default CircleHookClick;
 
-const Wrapper = styled.article`
+const Wrapper = styled(motion.article)`
   border-radius: 50%;
   background-color: lightgreen;
   position: relative;

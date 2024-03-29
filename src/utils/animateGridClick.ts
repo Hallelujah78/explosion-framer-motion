@@ -7,10 +7,11 @@ const animateGridClick = (
 ) => {
   let newX = 0;
   let newY = 0;
+  // console.log(currentRef);
 
   if (centerCoords !== undefined && currentRef) {
     const { x: containX, y: containY } = centerCoords;
-    console.log(containX, containY);
+
     // containCoords will be point 1, coords will be point 2
     const slope = -(containY - coords!.y) / (containX - coords!.x);
     // console.log(slope);
@@ -39,10 +40,13 @@ const animateGridClick = (
       coords!.x < containX &&
       coords!.y < containY
     ) {
+      console.log(`top left: ${slope}`);
       newY = -window.innerHeight / 2 + coords!.y;
 
       newX = (newY - yIntercept) / -slope - coords!.x;
       newY = newY - coords!.y;
+      const calcObj = { oldX: coords!.x, oldY: coords!.y, newX, newY, slope };
+      // console.log(calcObj);
     } else if (
       slope >= 0 &&
       slope < 1 &&
