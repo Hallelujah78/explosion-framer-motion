@@ -38,7 +38,6 @@ const CircleHookClick: React.FC<ShapeProps> = () => {
       ref={selfRef}
       as={motion.article}
       initial="start"
-      variants={variants}
       animate={moveCoords ? "move" : "start"}
     >
       <div className="center">
