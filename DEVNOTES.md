@@ -125,3 +125,13 @@ f(t) = A + t\*N
   = (678, -799)
   => this doesn't seem correct since x must decrease, not increase
   => remember, we have reversed the sign of our slope, so it is actually 5.1934
+
+## Cartesian to screen coordinates
+
+screenX = cartX + screenWidth/2
+screenY = screenHeight/2 - cartY
+
+=> -cartX = screenWidth/2 - screenX
+=> cartX = screenX - screenWidth/2 // this!
+
+=> cartY = screenHiehgt/2 - screenY
