@@ -1,4 +1,5 @@
 import { Coords } from "../models/types";
+import vectorCalc from "./vectorCalc";
 
 const animateGridClick = (
   currentRef: HTMLElement | null,
@@ -8,7 +9,7 @@ const animateGridClick = (
   let newX = 0;
   let newY = 0;
   // console.log(currentRef);
-
+  vectorCalc(centerCoords, coords);
   if (centerCoords !== undefined && currentRef) {
     const { x: containX, y: containY } = centerCoords;
 
