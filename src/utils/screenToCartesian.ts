@@ -2,7 +2,7 @@ import { Coords } from "../models/types";
 
 function screenToCartesian(coords: Coords) {
   // cartX = screenX - screenWidth/2
-  // cartY = screenHiehgt/2 - screenY
+  // cartY = screenHeight/2 - screenY
   let cartesianCoords;
   if (coords !== undefined) {
     cartesianCoords = {

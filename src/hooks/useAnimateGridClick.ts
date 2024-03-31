@@ -7,6 +7,9 @@ import {
 } from "react";
 import { Coords } from "../models/types";
 import animateGridClick from "../utils/animateGridClick";
+import screenToCartesian from "../utils/screenToCartesian";
+import cartesianToScreen from "../utils/cartesianToScreen";
+import vectorCalc from "../utils/vectorCalc";
 
 const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
   const [coords, setCoords] = useState<Coords>();
@@ -16,24 +19,25 @@ const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
     const currentRef = selfRef?.current;
     if (currentRef) {
       console.log("ref has changed");
-      const tempCoords = { x: 0, y: 0 };
+      let tempCoords = { x: 0, y: 0 };
       const { x, y, width, height } = currentRef.getBoundingClientRect();
       tempCoords.x = x + width / 2;
       tempCoords.y = y + height / 2;
+      tempCoords = screenToCartesian(tempCoords);
       setCoords(tempCoords);
     }
   }, [selfRef]);
 
   const getClickCoords = useCallback(
     (event: MouseEvent) => {
-      const { clientX, clientY } = event;
+      let centerCoords = { x: event.clientX, y: event.clientY };
+      centerCoords = screenToCartesian(centerCoords);
       const currentRef = selfRef?.current;
       if (currentRef) {
-        const coordsToMoveTo = animateGridClick(
-          currentRef,
-          { x: clientX, y: clientY },
-          coords
-        );
+        // let coordsToMoveTo = animateGridClick(currentRef, centerCoords, coords);
+        let coordsToMoveTo = vectorCalc(centerCoords, coords);
+        coordsToMoveTo = cartesianToScreen(coordsToMoveTo);
+        console.log(coordsToMoveTo);
         setMoveCoords(coordsToMoveTo);
       }
     },

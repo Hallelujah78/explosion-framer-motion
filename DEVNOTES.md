@@ -135,3 +135,13 @@ screenY = screenHeight/2 - cartY
 => cartX = screenX - screenWidth/2 // this!
 
 => cartY = screenHiehgt/2 - screenY
+
+- note, this sets 0,0 in cartesian coords to center of screen!
+
+## Using our vector calc with our coord conversion
+
+- get the screen coords
+- convert screen coords to cartesian coords
+- run that through vectorCalc
+- convert back to screen coords
+- set moveTo with the new coords

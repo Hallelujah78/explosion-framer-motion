@@ -22,10 +22,10 @@ const vectorCalc = (centerCoords: Coords, coords: Coords) => {
     // parameterized format equation for line
     // f(t) = A + t*N
     // where t is a distance, A is your original point and N is your normalized direction vector
-    newPoint.x = -(coords.x + 1000 * normDirVector.a);
-    newPoint.y = -(coords.y + 1000 * normDirVector.b);
+    newPoint.x = coords.x + 1000 * normDirVector.a;
+    newPoint.y = coords.y + 1000 * normDirVector.b;
 
-    console.log(newPoint);
+    return newPoint;
   }
 };
 
