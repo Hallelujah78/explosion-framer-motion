@@ -18,7 +18,7 @@ const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
   useLayoutEffect(() => {
     const currentRef = selfRef?.current;
     if (currentRef) {
-      console.log("ref has changed");
+      // console.log("ref has changed");
       let tempCoords = { x: 0, y: 0 };
       const { x, y, width, height } = currentRef.getBoundingClientRect();
       tempCoords.x = x + width / 2;
@@ -37,7 +37,7 @@ const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
         // let coordsToMoveTo = animateGridClick(currentRef, centerCoords, coords);
         let coordsToMoveTo = vectorCalc(centerCoords, coords);
         coordsToMoveTo = cartesianToScreen(coordsToMoveTo);
-        console.log(coordsToMoveTo);
+        // console.log(coordsToMoveTo);
         setMoveCoords(coordsToMoveTo);
       }
     },

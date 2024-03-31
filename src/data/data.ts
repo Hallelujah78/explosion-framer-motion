@@ -1,8 +1,4 @@
-export const boxes = [
-  1, 2,
-
-  3, 4,
-];
+export const boxes = [1];
 
 // ,13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
 
