@@ -6,8 +6,8 @@ function screenToCartesian(coords: Coords) {
   let cartesianCoords;
   if (coords !== undefined) {
     cartesianCoords = {
-      x: coords.x - screen.width / 2,
-      y: screen.height / 2 - coords.y,
+      x: coords.x - window.innerWidth / 2,
+      y: window.innerHeight / 2 - coords.y,
     };
     return cartesianCoords;
   } else throw new Error("coords undefined");

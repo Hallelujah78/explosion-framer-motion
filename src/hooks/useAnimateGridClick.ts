@@ -31,11 +31,16 @@ const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
   const getClickCoords = useCallback(
     (event: MouseEvent) => {
       let centerCoords = { x: event.clientX, y: event.clientY };
+      console.log(centerCoords);
       centerCoords = screenToCartesian(centerCoords);
       const currentRef = selfRef?.current;
       if (currentRef) {
         // let coordsToMoveTo = animateGridClick(currentRef, centerCoords, coords);
+
         let coordsToMoveTo = vectorCalc(centerCoords, coords);
+        console.log(
+          `clicked X: ${centerCoords.x}, clickedY: ${centerCoords.y}`
+        );
         coordsToMoveTo = cartesianToScreen(coordsToMoveTo);
         // console.log(coordsToMoveTo);
         setMoveCoords(coordsToMoveTo);

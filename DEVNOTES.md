@@ -145,3 +145,14 @@ screenY = screenHeight/2 - cartY
 - run that through vectorCalc
 - convert back to screen coords
 - set moveTo with the new coords
+
+## There is an issue with the center point of our element
+
+- clicking to the bottom right hand side of our element actually causes it to go directly upwards
+
+screenX = cartX + screen_width/2
+=> cartX = screenX - screenWidth/2
+=> cartX = screenX - screenWidth/2
+
+screenY = screen_height/2 - cartY
+=> cartY = screenHeight/2 - screenY

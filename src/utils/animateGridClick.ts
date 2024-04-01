@@ -41,7 +41,7 @@ const animateGridClick = (
       coords!.x < containX &&
       coords!.y < containY
     ) {
-      console.log(`top left: ${slope}`);
+      // console.log(`top left: ${slope}`);
       newY = -window.innerHeight / 2 + coords!.y;
 
       newX = (newY - yIntercept) / -slope - coords!.x;

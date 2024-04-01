@@ -16,8 +16,8 @@ const CircleHookClick: React.FC<ShapeProps> = () => {
       rotateY: 0,
       rotateZ: 0,
       scale: 1,
-      x: 0,
-      y: 0,
+      x: coords?.x,
+      y: coords?.y,
     },
     move: {
       rotate: -360,
@@ -60,12 +60,17 @@ const Wrapper = styled(motion.article)`
   background-color: lightgreen;
   position: relative;
   display: inline-block;
-  height: 4rem;
-  width: 4rem;
+  height: 64px;
+  width: 64px;
   .center {
     width: 100%;
     height: 100%;
     display: grid;
     place-content: center;
+  }
+  .coords {
+    position: absolute;
+    left: 0;
+    bottom: 0;
   }
 `;

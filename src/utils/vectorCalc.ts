@@ -17,8 +17,8 @@ const vectorCalc = (centerCoords: Coords, coords: Coords) => {
 
     // normalized direction vector
     const normDirVector = { a: PQ.a / magnitude, b: PQ.b / magnitude };
-    console.log(normDirVector);
-    console.log(angle);
+    // console.log(normDirVector);
+    // console.log(angle);
     // parameterized format equation for line
     // f(t) = A + t*N
     // where t is a distance, A is your original point and N is your normalized direction vector
