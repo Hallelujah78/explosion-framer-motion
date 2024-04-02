@@ -31,11 +31,13 @@ const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
       const centerCoords = { x: event.clientX, y: event.clientY };
 
       const currentRef = selfRef?.current;
-      if (currentRef) {
+      if (currentRef && coords) {
         const coordsToMoveTo = vectorCalc(centerCoords, coords);
-        coordsToMoveTo.x = coordsToMoveTo?.x - coords.x;
-        coordsToMoveTo.y = coordsToMoveTo?.y - coords.y;
-        setMoveCoords(coordsToMoveTo);
+        if (coordsToMoveTo) {
+          coordsToMoveTo.x = coordsToMoveTo?.x - coords.x;
+          coordsToMoveTo.y = coordsToMoveTo?.y - coords.y;
+          setMoveCoords(coordsToMoveTo);
+        }
       }
     },
     [selfRef, coords]

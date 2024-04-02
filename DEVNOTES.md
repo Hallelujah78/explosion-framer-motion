@@ -167,13 +167,17 @@ screenY = screen_height/2 - cartY
 
 ## To be fixed
 
-- the further away from our grid of tiles we click, the less they move
-  - this isn't what I wanted
-- all elements are moving different distances
-  - the finish position appears to describe the circumference of a circle relative to where we clicked (being the center point of the circle)
-  - this might be okay, but we need to make our parameterized equation for line t value dynamic and link it to the width or height of the screen. This will ensure elements are transitioned offscreen. The value t can be thought of as distance.
-  - remember: f(t) = A + t(N)
+- ~~the further away from our grid of tiles we click, the less they move~~
+  - ~~this isn't what I wanted~~
+- ~~all elements are moving different distances~~
+  - ~~the finish position appears to describe the circumference of a circle relative to where we clicked (being the center point of the circle)~~
+  - ~~this might be okay, but we need to make our parameterized equation for line t value dynamic and link it to the width or height of the screen. This will ensure elements are transitioned offscreen. The value t can be thought of as distance.~~ DONE
+  - ~~remember: f(t) = A + t(N)~~
 - ~~elements should not rotate when first loaded~~ DONE
+- clicking when the elements are already in motion should do one of the following:
+  - queue up another animation after the previous one finishes - harder
+  - reset the state to the start state and commence the new animation - easy
+  - warn the user that an animation is already in progress - easy
 
 ## To be Added
 
