@@ -8,14 +8,14 @@ const animateGridClick = (
 ) => {
   let newX = 0;
   let newY = 0;
-  // console.log(currentRef);
+
   vectorCalc(centerCoords, coords);
   if (centerCoords !== undefined && currentRef) {
     const { x: containX, y: containY } = centerCoords;
 
     // containCoords will be point 1, coords will be point 2
     const slope = -(containY - coords!.y) / (containX - coords!.x);
-    // console.log(slope);
+
     // equation of a line: y - mx = b
     const yIntercept = containY + slope * containX;
 
@@ -25,8 +25,7 @@ const animateGridClick = (
         currentRef.getBoundingClientRect().y +
         currentRef.getBoundingClientRect().height / 2;
       newX = (newY - yIntercept) / -slope - coords!.x;
-      // console.log("oldX: ", coords!.x, "\nnewX: ", newX);
-      // console.log("oldY: ", coords!.y, "\nnewY: ", newY);
+
       newY = newY - coords!.y;
     } else if (slope <= 1 && coords!.x > containX && coords!.y > containY) {
       newY =
@@ -41,13 +40,11 @@ const animateGridClick = (
       coords!.x < containX &&
       coords!.y < containY
     ) {
-      // console.log(`top left: ${slope}`);
       newY = -window.innerHeight / 2 + coords!.y;
 
       newX = (newY - yIntercept) / -slope - coords!.x;
       newY = newY - coords!.y;
       const calcObj = { oldX: coords!.x, oldY: coords!.y, newX, newY, slope };
-      // console.log(calcObj);
     } else if (
       slope >= 0 &&
       slope < 1 &&
@@ -60,8 +57,7 @@ const animateGridClick = (
         currentRef.getBoundingClientRect().y +
         currentRef.getBoundingClientRect().height / 2;
       newX = (newY - yIntercept) / -slope - coords!.x;
-      // console.log("oldX: ", coords!.x, "\nnewX: ", newX);
-      // console.log("oldY: ", coords!.y, "\nnewY: ", newY);
+
       newY = newY - coords!.y;
     } else if (
       slope >= -1 &&
@@ -69,7 +65,6 @@ const animateGridClick = (
       coords!.x < containX &&
       coords!.y < containY
     ) {
-      // console.log("outer height: ", window.outerHeight);
       newY = -window.innerHeight / 2 + coords!.y;
       // -coords!.y -
       // currentRef.getBoundingClientRect().y +
@@ -86,7 +81,7 @@ const animateGridClick = (
       newX = -(window.innerWidth / 2);
       // y = mx + b;
       const variance = Math.random();
-      // console.log("variance: ", variance);
+
       if (variance > 0.5) {
         newY = -variance * 500;
       } else {
@@ -100,7 +95,7 @@ const animateGridClick = (
       newX = window.innerWidth / 2;
       // y = mx + b;
       const variance = Math.random();
-      // console.log("variance: ", variance);
+
       if (variance > 0.5) {
         newY = -variance * 500;
       } else {
@@ -115,7 +110,7 @@ const animateGridClick = (
       newY = -window.innerHeight / 2;
       // y = mx + b;
       const variance = Math.random();
-      // console.log("variance: ", variance);
+
       if (variance > 0.5) {
         newX = -variance * 500;
       } else {
@@ -127,7 +122,7 @@ const animateGridClick = (
         newY = window.innerHeight / 2;
         // y = mx + b;
         const variance = Math.random();
-        // console.log("variance: ", variance);
+
         if (variance > 0.5) {
           newX = -variance * 500;
         } else {
@@ -136,7 +131,6 @@ const animateGridClick = (
       }
     }
 
-    // console.log(newY);
     const newCoords = { x: newX, y: newY };
     return newCoords;
   }

@@ -156,3 +156,11 @@ screenX = cartX + screen_width/2
 
 screenY = screen_height/2 - cartY
 => cartY = screenHeight/2 - screenY
+
+## Troubleshooting vector calculation woes
+
+- logging the center of an element's screen coords before conversion to cartesian and then after it is converted from cartesian to screen coords shows that the conversion is occurring correctly
+  - converting from Cartesian (or more properly where the origin is the center of the screen) perfectly reverses the conversion to Cartesian
+- vector calculation was fine
+- the issue was the original issue I identified when using slope of a line to do the same thing
+  - the coordinates you move to are relative to the starting position of the element

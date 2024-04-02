@@ -4,7 +4,7 @@ import cartesianToScreen from "./utils/cartesianToScreen";
 
 const App: React.FC = () => {
   const circleCoords = cartesianToScreen({ x: -32.5, y: 0.015625 });
-  console.log(circleCoords);
+  console.log("circle screen coords converted from cartesian: ", circleCoords);
   return (
     <Wrapper>
       <Content />

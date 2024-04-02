@@ -39,8 +39,7 @@ const Box: React.FC<ShapeProps> = ({ containCenterCoords }) => {
             currentRef.getBoundingClientRect().y +
             currentRef.getBoundingClientRect().height / 2;
           newX = (newY - yIntercept) / -slope - coords!.x;
-          // console.log("oldX: ", coords!.x, "\nnewX: ", newX);
-          // console.log("oldY: ", coords!.y, "\nnewY: ", newY);
+
           newY = newY - coords!.y;
         } else if (slope <= 1 && coords!.x > containX && coords!.y > containY) {
           newY =
@@ -71,8 +70,7 @@ const Box: React.FC<ShapeProps> = ({ containCenterCoords }) => {
             currentRef.getBoundingClientRect().y +
             currentRef.getBoundingClientRect().height / 2;
           newX = (newY - yIntercept) / -slope - coords!.x;
-          // console.log("oldX: ", coords!.x, "\nnewX: ", newX);
-          // console.log("oldY: ", coords!.y, "\nnewY: ", newY);
+
           newY = newY - coords!.y;
         } else if (
           slope >= -1 &&
@@ -80,11 +78,8 @@ const Box: React.FC<ShapeProps> = ({ containCenterCoords }) => {
           coords!.x < containX &&
           coords!.y < containY
         ) {
-          // console.log("outer height: ", window.outerHeight);
           newY = -window.innerHeight / 2 + coords!.y;
-          // -coords!.y -
-          // currentRef.getBoundingClientRect().y +
-          // currentRef.getBoundingClientRect().height / 2;
+
           newX = (newY - yIntercept) / -slope - coords!.x;
           newY = newY - coords!.y;
         } else if (slope >= 0 && coords!.x > containX && coords!.y < containY) {
@@ -94,7 +89,6 @@ const Box: React.FC<ShapeProps> = ({ containCenterCoords }) => {
           newY = newY - coords!.y;
         }
 
-        // console.log(newY);
         const newCoords = { x: newX, y: newY };
         setMoveCoords(newCoords);
       }

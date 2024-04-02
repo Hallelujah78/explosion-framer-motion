@@ -8,7 +8,9 @@ const CircleHookClick: React.FC<ShapeProps> = () => {
   const selfRef = useRef<HTMLElement | null>(null);
   const [coords, moveCoords] = useAnimateGridClick(selfRef);
   const controls = useAnimationControls();
-
+  useEffect(() => {
+    void controls.start("move");
+  }, [moveCoords, controls]);
   const variants = {
     start: {
       rotate: 0,
@@ -16,8 +18,10 @@ const CircleHookClick: React.FC<ShapeProps> = () => {
       rotateY: 0,
       rotateZ: 0,
       scale: 1,
-      x: coords?.x,
-      y: coords?.y,
+      // x: coords?.x,
+      // y: coords?.y,
+      x: 0,
+      y: 0,
     },
     move: {
       rotate: -360,
@@ -26,10 +30,6 @@ const CircleHookClick: React.FC<ShapeProps> = () => {
       y: moveCoords?.y,
     },
   };
-
-  useEffect(() => {
-    void controls.start("move");
-  }, [moveCoords, controls]);
 
   return (
     <Wrapper
