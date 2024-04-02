@@ -27,8 +27,8 @@ const vectorCalc = (centerCoords: Coords, coords: Coords) => {
     // parameterized format equation for line
     // f(t) = A + t*N
     // where t is a distance, A is your original point and N is your normalized direction vector
-    newPoint.x = Math.round(cartCenterCoords.x + 1200 * normDirVector.a);
-    newPoint.y = Math.round(cartCenterCoords.y + 1200 * normDirVector.b);
+    newPoint.x = Math.round(cartCenterCoords.x + 1600 * normDirVector.a);
+    newPoint.y = Math.round(cartCenterCoords.y + 1600 * normDirVector.b);
 
     newPoint.x = cartesianToScreen({
       x: newPoint.x,

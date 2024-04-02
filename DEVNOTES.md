@@ -1,6 +1,6 @@
 ## Creating An Explosion Effect
 
-- the idea is that each Box will fly off in a different direction, with a different rate of rotations in the different axes, at different speeds and the effect will look as if the movement and rotation was created by an explosion
+- the idea is that each Box will fly off in a different direction, with different rates of rotations in the different axes, at different speeds and the effect will look as if the movement and rotation was created by an explosion
 
 - To achieve this we'll need:
   rotate: 360,
@@ -19,7 +19,7 @@
   - ~~to move a box in a particular direction the x and y translates will
     need to have different but related durations~~
   - X and Y can be px values
-- assuming we have a grid with rows , - assuming we have a grid with rows of boxesof boxes
+- assuming we have a grid with rows , - assuming we have a grid with rows of boxes
   - each row has the same y value but an increasing x value
   - when y is not equal, then you have a new row
     [[{x, y}, {x, y}], [{x, y}, {x, y}], [{x, y}, {x, y}] ]
@@ -126,7 +126,7 @@ f(t) = A + t\*N
   => this doesn't seem correct since x must decrease, not increase
   => remember, we have reversed the sign of our slope, so it is actually 5.1934
 
-## Cartesian to screen coordinates
+## Convert screen coordinates to a different origin (center of screen)
 
 screenX = cartX + screenWidth/2
 screenY = screenHeight/2 - cartY
@@ -141,7 +141,7 @@ screenY = screenHeight/2 - cartY
 ## Using our vector calc with our coord conversion
 
 - get the screen coords
-- convert screen coords to cartesian coords
+- convert screen coords to center screen is origin coords
 - run that through vectorCalc
 - convert back to screen coords
 - set moveTo with the new coords
@@ -164,3 +164,21 @@ screenY = screen_height/2 - cartY
 - vector calculation was fine
 - the issue was the original issue I identified when using slope of a line to do the same thing
   - the coordinates you move to are relative to the starting position of the element
+
+## To be fixed
+
+- the further away from our grid of tiles we click, the less they move
+  - this isn't what I wanted
+- all elements are moving different distances
+  - the finish position appears to describe the circumference of a circle relative to where we clicked (being the center point of the circle)
+  - this might be okay, but we need to make our parameterized equation for line t value dynamic and link it to the width or height of the screen. This will ensure elements are transitioned offscreen. The value t can be thought of as distance.
+  - remember: f(t) = A + t(N)
+- ~~elements should not rotate when first loaded~~ DONE
+
+## To be Added
+
+- we could add controls to allow a user to use the different methods
+  - change the t value
+  - change the number of elements and the grid structure
+  - border radius, rotation, etc
+- look at canvas, set portions of an image to the background of each element, then we have an exploding picture

@@ -47,5 +47,4 @@ const Wrapper = styled.section`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   place-content: center;
   gap: 1px;
-  border: red solid 1px;
 `;
