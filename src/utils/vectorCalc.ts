@@ -19,8 +19,8 @@ const vectorCalc = (centerCoords: Coords, coords: Coords) => {
     const magnitude = (PQ.a ** 2 + PQ.b ** 2) ** 0.5;
 
     // angle
-    const angle = (Math.atan(PQ.b / PQ.a) * 180) / Math.PI;
-    console.log(angle);
+    // const angle = (Math.atan(PQ.b / PQ.a) * 180) / Math.PI;
+
     // normalized direction vector
     const normDirVector = { a: PQ.a / magnitude, b: PQ.b / magnitude };
 
@@ -39,7 +39,6 @@ const vectorCalc = (centerCoords: Coords, coords: Coords) => {
       y: newPoint.y,
     })!.y;
 
-    console.log("newPoint: ", newPoint);
     return newPoint;
   }
 };

@@ -6,7 +6,7 @@ import useAnimateGridClick from "../hooks/useAnimateGridClick";
 
 const CircleHookClick: React.FC<ShapeProps> = () => {
   const selfRef = useRef<HTMLElement | null>(null);
-  const [coords, moveCoords] = useAnimateGridClick(selfRef);
+  const [moveCoords] = useAnimateGridClick(selfRef);
   const controls = useAnimationControls();
 
   useEffect(() => {
@@ -17,17 +17,11 @@ const CircleHookClick: React.FC<ShapeProps> = () => {
 
   const variants = {
     start: {
-      // rotate: 0,
-      // rotateX: 0,
-      // rotateY: 0,
-      // rotateZ: 0,
-      // scale: 1,
       x: 0,
       y: 0,
     },
     move: {
       rotate: -360,
-      scale: 1,
       x: moveCoords?.x,
       y: moveCoords?.y,
     },
@@ -39,31 +33,24 @@ const CircleHookClick: React.FC<ShapeProps> = () => {
       id="box"
       transition={{
         delay: 0.5,
-        duration: 3,
+        duration: 4,
         repeat: 1,
         repeatType: "reverse",
       }}
       ref={selfRef}
       initial="start"
       animate={controls}
-    >
-      <div className="center">
-        {coords ? coords.x : null}
-        <br />
-        {coords ? coords.y : null}
-      </div>
-    </Wrapper>
+    ></Wrapper>
   );
 };
 export default CircleHookClick;
 
 const Wrapper = styled(motion.article)`
-  /* border-radius: 50%; */
   background-color: lightgreen;
   position: relative;
   display: inline-block;
-  height: 64px;
-  width: 64px;
+  height: 20px;
+  width: 20px;
   .center {
     width: 100%;
     height: 100%;

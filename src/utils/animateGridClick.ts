@@ -44,7 +44,6 @@ const animateGridClick = (
 
       newX = (newY - yIntercept) / -slope - coords!.x;
       newY = newY - coords!.y;
-      const calcObj = { oldX: coords!.x, oldY: coords!.y, newX, newY, slope };
     } else if (
       slope >= 0 &&
       slope < 1 &&

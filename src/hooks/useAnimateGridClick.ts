@@ -13,18 +13,21 @@ const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
   const [coords, setCoords] = useState<Coords>();
   const [moveCoords, setMoveCoords] = useState<Coords | null>(null);
 
-  useLayoutEffect(() => {
+  const setElementCenter = useCallback(() => {
     const currentRef = selfRef?.current;
     if (currentRef) {
       const tempCoords = { x: 0, y: 0 };
       const { x, y, width, height } = currentRef.getBoundingClientRect();
       tempCoords.x = x + width / 2;
       tempCoords.y = y + height / 2;
-      console.log("circle screen before conversion: ", tempCoords);
 
       setCoords(tempCoords);
     }
   }, [selfRef]);
+
+  useLayoutEffect(() => {
+    setElementCenter();
+  }, [selfRef, setElementCenter]);
 
   const getClickCoords = useCallback(
     (event: MouseEvent) => {
@@ -43,6 +46,14 @@ const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
     [selfRef, coords]
   );
 
+  useLayoutEffect(() => {
+    window.addEventListener("resize", setElementCenter);
+
+    return () => {
+      window.removeEventListener("resize", setElementCenter);
+    };
+  }, [setElementCenter]);
+
   useEffect(() => {
     window.addEventListener("click", getClickCoords);
 
@@ -51,7 +62,7 @@ const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
     };
   }, [getClickCoords]);
 
-  return [coords, moveCoords];
+  return [moveCoords];
 };
 
 export default useAnimateGridClick;

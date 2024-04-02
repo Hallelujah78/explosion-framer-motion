@@ -12,7 +12,7 @@ const animateGrid = (
 
     // containCoords will be point 1, coords will be point 2
     const slope = -(containY - coords!.y) / (containX - coords!.x);
-    // console.log(slope);
+
     // equation of a line: y - mx = b
     const yIntercept = containY + slope * containX;
 
@@ -22,8 +22,7 @@ const animateGrid = (
         currentRef.getBoundingClientRect().y +
         currentRef.getBoundingClientRect().height / 2;
       newX = (newY - yIntercept) / -slope - coords!.x;
-      // console.log("oldX: ", coords!.x, "\nnewX: ", newX);
-      // console.log("oldY: ", coords!.y, "\nnewY: ", newY);
+
       newY = newY - coords!.y;
     } else if (slope <= 1 && coords!.x > containX && coords!.y > containY) {
       newY =
@@ -54,8 +53,7 @@ const animateGrid = (
         currentRef.getBoundingClientRect().y +
         currentRef.getBoundingClientRect().height / 2;
       newX = (newY - yIntercept) / -slope - coords!.x;
-      // console.log("oldX: ", coords!.x, "\nnewX: ", newX);
-      // console.log("oldY: ", coords!.y, "\nnewY: ", newY);
+
       newY = newY - coords!.y;
     } else if (
       slope >= -1 &&
@@ -63,11 +61,8 @@ const animateGrid = (
       coords!.x < containX &&
       coords!.y < containY
     ) {
-      // console.log("outer height: ", window.outerHeight);
       newY = -window.innerHeight / 2 + coords!.y;
-      // -coords!.y -
-      // currentRef.getBoundingClientRect().y +
-      // currentRef.getBoundingClientRect().height / 2;
+
       newX = (newY - yIntercept) / -slope - coords!.x;
       newY = newY - coords!.y;
     } else if (slope >= 0 && coords!.x > containX && coords!.y < containY) {
@@ -80,7 +75,7 @@ const animateGrid = (
       newX = -(window.innerWidth / 2);
       // y = mx + b;
       const variance = Math.random();
-      // console.log("variance: ", variance);
+
       if (variance > 0.5) {
         newY = -variance * 500;
       } else {
@@ -94,7 +89,7 @@ const animateGrid = (
       newX = window.innerWidth / 2;
       // y = mx + b;
       const variance = Math.random();
-      // console.log("variance: ", variance);
+
       if (variance > 0.5) {
         newY = -variance * 500;
       } else {
@@ -109,7 +104,7 @@ const animateGrid = (
       newY = -window.innerHeight / 2;
       // y = mx + b;
       const variance = Math.random();
-      // console.log("variance: ", variance);
+
       if (variance > 0.5) {
         newX = -variance * 500;
       } else {
@@ -121,7 +116,7 @@ const animateGrid = (
         newY = window.innerHeight / 2;
         // y = mx + b;
         const variance = Math.random();
-        // console.log("variance: ", variance);
+
         if (variance > 0.5) {
           newX = -variance * 500;
         } else {
@@ -129,8 +124,6 @@ const animateGrid = (
         }
       }
     }
-
-    // console.log(newY);
     const newCoords = { x: newX, y: newY };
     return newCoords;
   }

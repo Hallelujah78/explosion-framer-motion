@@ -1,24 +1,21 @@
 import styled from "styled-components";
 import Content from "./components/Content";
-import cartesianToScreen from "./utils/cartesianToScreen";
 
 const App: React.FC = () => {
-  const circleCoords = cartesianToScreen({ x: -32.5, y: 0.015625 });
-  console.log("circle screen coords converted from cartesian: ", circleCoords);
   return (
     <Wrapper>
       <Content />
-      <div
+      {/* <div
         style={{ top: window.innerHeight / 2, left: window.innerWidth / 2 }}
         className="screen-center"
-      ></div>
-      <div
+      ></div> */}
+      {/* <div
         style={{
           top: circleCoords!.y,
           left: cartesianToScreen({ x: -32.5, y: 0.015625 })!.x,
         }}
         className="circle-center"
-      ></div>
+      ></div> */}
     </Wrapper>
   );
 };

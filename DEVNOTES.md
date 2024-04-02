@@ -174,6 +174,9 @@ screenY = screen_height/2 - cartY
   - ~~this might be okay, but we need to make our parameterized equation for line t value dynamic and link it to the width or height of the screen. This will ensure elements are transitioned offscreen. The value t can be thought of as distance.~~ DONE
   - ~~remember: f(t) = A + t(N)~~
 - ~~elements should not rotate when first loaded~~ DONE
+- ~~resizing the window - update coords and window height & width~~
+- if window height is greater than width, the height should be used as the value t in our parametrized line equation
+- device rotation - handle changes for coords & width & height
 - clicking when the elements are already in motion should do one of the following:
   - queue up another animation after the previous one finishes - harder
   - reset the state to the start state and commence the new animation - easy

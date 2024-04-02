@@ -2,10 +2,9 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { ShapeProps } from "../models/types";
-// import useAnimateGrid from "../hooks/useAnimateGrid";
 import useAnimateGridClick from "../hooks/useAnimateGridClick";
 
-const CircleHook: React.FC<ShapeProps> = ({ containCenterCoords }) => {
+const CircleHook: React.FC<ShapeProps> = () => {
   const selfRef = useRef<HTMLElement | null>(null);
 
   const [coords, moveCoords] = useAnimateGridClick(selfRef);
