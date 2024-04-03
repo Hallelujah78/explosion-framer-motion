@@ -8,6 +8,7 @@ import {
 import { Coords } from "../models/types";
 
 import vectorCalc from "../utils/vectorCalc";
+import { toast } from "react-toastify";
 
 const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
   const [coords, setCoords] = useState<Coords>(undefined);
@@ -45,6 +46,10 @@ const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
 
     const getClickCoords = (event: MouseEvent) => {
       if (isAnimating) {
+        toast("Animation is already in progress!", {
+          toastId: "unique",
+        });
+
         return;
       }
       setIsAnimating(true);
