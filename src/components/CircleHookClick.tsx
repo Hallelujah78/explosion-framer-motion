@@ -32,7 +32,6 @@ const CircleHookClick: React.FC<ShapeProps> = () => {
       variants={variants}
       id="box"
       transition={{
-        delay: 0.5,
         duration: 4,
         repeat: 1,
         repeatType: "reverse",

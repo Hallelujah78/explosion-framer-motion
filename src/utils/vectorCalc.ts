@@ -27,17 +27,21 @@ const vectorCalc = (centerCoords: Coords, coords: Coords) => {
     // parameterized format equation for line
     // f(t) = A + t*N
     // where t is a distance, A is your original point and N is your normalized direction vector
-    newPoint.x = Math.round(cartCoords.x + window.outerWidth * normDirVector.a);
-    newPoint.y = Math.round(cartCoords.y + window.outerWidth * normDirVector.b);
+    newPoint.x = cartCoords.x + window.outerWidth * normDirVector.a;
+    newPoint.y = cartCoords.y + window.outerWidth * normDirVector.b;
 
-    newPoint.x = cartesianToScreen({
-      x: newPoint.x,
-      y: newPoint.y,
-    })!.x;
-    newPoint.y = cartesianToScreen({
-      x: newPoint.x,
-      y: newPoint.y,
-    })!.y;
+    newPoint.x = Math.round(
+      cartesianToScreen({
+        x: newPoint.x,
+        y: newPoint.y,
+      })!.x
+    );
+    newPoint.y = Math.round(
+      cartesianToScreen({
+        x: newPoint.x,
+        y: newPoint.y,
+      })!.y
+    );
 
     return newPoint;
   }

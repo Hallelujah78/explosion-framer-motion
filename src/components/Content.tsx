@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-// import Box from "./Box";
-// import Circle from "./Circle";
+
 import CircleHookClick from "./CircleHookClick";
 import { boxes } from "../data/data";
 import { Coords } from "../models/types";
@@ -44,6 +43,6 @@ const Wrapper = styled.section`
   width: fit-content;
   margin: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   place-content: center;
 `;

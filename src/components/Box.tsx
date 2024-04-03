@@ -140,8 +140,8 @@ const Wrapper = styled.article`
   background-color: lightgreen;
   position: relative;
   display: inline-block;
-  height: 3rem;
-  width: 3rem;
+  height: 20px;
+  width: 20px;
   .center {
     width: 100%;
     height: 100%;

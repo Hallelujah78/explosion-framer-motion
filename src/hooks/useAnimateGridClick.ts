@@ -18,8 +18,8 @@ const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
     if (currentRef) {
       const tempCoords = { x: 0, y: 0 };
       const { x, y, width, height } = currentRef.getBoundingClientRect();
-      tempCoords.x = x + width / 2;
-      tempCoords.y = y + height / 2;
+      tempCoords.x = Math.round(x + width / 2);
+      tempCoords.y = Math.round(y + height / 2);
 
       setCoords(tempCoords);
     }

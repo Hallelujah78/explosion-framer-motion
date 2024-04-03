@@ -6,8 +6,8 @@ const cartesianToScreen = (coords: Coords): Coords => {
   let screenCoords;
   if (coords !== undefined) {
     screenCoords = {
-      x: coords.x + window.innerWidth / 2,
-      y: window.innerHeight / 2 - coords.y,
+      x: Math.round(coords.x + window.innerWidth / 2),
+      y: Math.round(window.innerHeight / 2 - coords.y),
     };
     return screenCoords;
   } else throw new Error("coords are undefined");

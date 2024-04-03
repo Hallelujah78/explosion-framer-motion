@@ -5,17 +5,6 @@ const App: React.FC = () => {
   return (
     <Wrapper>
       <Content />
-      {/* <div
-        style={{ top: window.innerHeight / 2, left: window.innerWidth / 2 }}
-        className="screen-center"
-      ></div> */}
-      {/* <div
-        style={{
-          top: circleCoords!.y,
-          left: cartesianToScreen({ x: -32.5, y: 0.015625 })!.x,
-        }}
-        className="circle-center"
-      ></div> */}
     </Wrapper>
   );
 };
