@@ -12,16 +12,18 @@ import vectorCalc from "../utils/vectorCalc";
 const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
   const [coords, setCoords] = useState<Coords>();
   const [moveCoords, setMoveCoords] = useState<Coords | null>(null);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
   const setElementCenter = useCallback(() => {
+    console.log("element resized or ref changed");
     const currentRef = selfRef?.current;
     if (currentRef) {
-      const tempCoords = { x: 0, y: 0 };
+      const elementCenter = { x: 0, y: 0 };
       const { x, y, width, height } = currentRef.getBoundingClientRect();
-      tempCoords.x = Math.round(x + width / 2);
-      tempCoords.y = Math.round(y + height / 2);
+      elementCenter.x = Math.round(x + width / 2);
+      elementCenter.y = Math.round(y + height / 2);
 
-      setCoords(tempCoords);
+      setCoords(elementCenter);
     }
   }, [selfRef]);
 
@@ -29,11 +31,15 @@ const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
     setElementCenter();
   }, [selfRef, setElementCenter]);
 
-  const getClickCoords = useCallback(
-    (event: MouseEvent) => {
+  useEffect(() => {
+    const getClickCoords = (event: MouseEvent) => {
+      if (isAnimating) {
+        return;
+      }
+      setIsAnimating(true);
       const centerCoords = { x: event.clientX, y: event.clientY };
-
       const currentRef = selfRef?.current;
+
       if (currentRef && coords) {
         const coordsToMoveTo = vectorCalc(centerCoords, coords);
         if (coordsToMoveTo) {
@@ -42,27 +48,17 @@ const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
           setMoveCoords(coordsToMoveTo);
         }
       }
-    },
-    [selfRef, coords]
-  );
-
-  useLayoutEffect(() => {
+    };
+    window.addEventListener("click", getClickCoords);
     window.addEventListener("resize", setElementCenter);
 
     return () => {
+      window.removeEventListener("click", getClickCoords);
       window.removeEventListener("resize", setElementCenter);
     };
-  }, [setElementCenter]);
+  }, [coords, selfRef, isAnimating, setElementCenter]);
 
-  useEffect(() => {
-    window.addEventListener("click", getClickCoords);
-
-    return () => {
-      window.removeEventListener("click", getClickCoords);
-    };
-  }, [getClickCoords]);
-
-  return [moveCoords];
+  return { setIsAnimating, moveCoords };
 };
 
 export default useAnimateGridClick;

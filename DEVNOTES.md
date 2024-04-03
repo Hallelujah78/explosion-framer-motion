@@ -175,12 +175,21 @@ screenY = screen_height/2 - cartY
   - ~~remember: f(t) = A + t(N)~~
 - ~~elements should not rotate when first loaded~~ DONE
 - ~~resizing the window - update coords and window height & width~~
-- if window height is greater than width, the height should be used as the value t in our parametrized line equation
+- ~~if window height is greater than width, the height should be used as the value t in our parametrized line equation~~
 - device rotation - handle changes for coords & width & height
 - clicking when the elements are already in motion should do one of the following:
   - queue up another animation after the previous one finishes - harder
   - reset the state to the start state and commence the new animation - easy
   - warn the user that an animation is already in progress - easy
+- rotating the device or resizing the window while the animation is in motion causes the following problems:
+  - new clicks are not used as the position from which to translate the elements, the old click position is used
+- resize event listener is working in that
+  - you start the animation
+  - you resize the window during the animation
+  - you let the animation finish
+  - you click again and the old click point is used
+  - you resize the window
+  - you click again and it works correctly
 
 ## To be Added
 
