@@ -6,21 +6,23 @@ import useAnimateGridClick from "../hooks/useAnimateGridClick";
 
 const CircleHookClick: React.FC<ShapeProps> = () => {
   const selfRef = useRef<HTMLElement | null>(null);
-  const { setIsAnimating, moveCoords } = useAnimateGridClick(selfRef);
+  const { coords, setIsAnimating, moveCoords, setElementCenter } =
+    useAnimateGridClick(selfRef);
   const controls = useAnimationControls();
 
   useEffect(() => {
     if (moveCoords?.x) {
       void controls.start("move").then(() => {
+        setElementCenter();
         setIsAnimating(false);
       });
     }
-  }, [moveCoords, controls, setIsAnimating]);
+  }, [moveCoords, controls, setIsAnimating, setElementCenter]);
 
   const variants = {
     start: {
-      x: 0,
-      y: 0,
+      x: coords?.x,
+      y: coords?.y,
     },
     move: {
       rotate: -360,
