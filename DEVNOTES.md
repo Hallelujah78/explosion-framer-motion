@@ -167,20 +167,10 @@ screenY = screen_height/2 - cartY
 
 ## To Do
 
-- ~~the further away from our grid of tiles we click, the less they move~~
-  - ~~this isn't what I wanted~~
-- ~~all elements are moving different distances~~
-  - ~~the finish position appears to describe the circumference of a circle relative to where we clicked (being the center point of the circle)~~
-  - ~~this might be okay, but we need to make our parameterized equation for line t value dynamic and link it to the width or height of the screen. This will ensure elements are transitioned offscreen. The value t can be thought of as distance.~~ DONE
-  - ~~remember: f(t) = A + t(N)~~
-- ~~elements should not rotate when first loaded~~ DONE
-- ~~resizing the window - update coords and window height & width~~
-- ~~if window height is greater than width, the height should be used as the value t in our parametrized line equation~~
-- ~~device rotation - handle changes for coords & width & height~~ DONE
-  - ~~warn the user that an animation is already in progress - easy~~ DONE
-- ~~rotating the device or resizing the window while the animation is in motion causes the following problems:~~
-  - ~~new clicks are not used as the position from which to translate the elements, the old click position is used~~
-- ~~if the y value of the click is equal to the y value of a column of elements, those elements do not move~~ Fixed
+- before images load, we should display some loading message on first load
+- the isAnimating state should not be local to each of our 1014
+  CircleHookClick elements. This may be a pain to refactor, but we really only need one piece of state for this.
+- clean up code, remove commented out code
 
 ## To be Added
 

@@ -11,8 +11,8 @@ import vectorCalc from "../utils/vectorCalc";
 import { toast } from "react-toastify";
 
 const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {
-  const [coords, setCoords] = useState<Coords>(undefined);
-  const [moveCoords, setMoveCoords] = useState<Coords | null>(null);
+  const [coords, setCoords] = useState<Coords>();
+  const [moveCoords, setMoveCoords] = useState<Coords>();
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
   const setElementCenter = useCallback(() => {

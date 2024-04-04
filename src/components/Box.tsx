@@ -2,26 +2,26 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ShapeProps } from "../models/types";
+import { Coords } from "../models/types";
 
 const Box: React.FC<ShapeProps> = ({ containCenterCoords }) => {
   const selfRef = useRef<HTMLElement | null>(null);
-  const [coords, setCoords] = useState<{ x: number; y: number }>();
+  const [coords, setCoords] = useState<Coords>();
 
-  const [moveCoords, setMoveCoords] = useState<{ x: number; y: number }>();
+  const [moveCoords, setMoveCoords] = useState<Coords>();
 
   useEffect(() => {
     const currentRef = selfRef.current;
-
-    const tempCoords = { x: 0, y: 0 };
+    const elementCenter = { x: 0, y: 0 };
     if (currentRef) {
-      tempCoords.x =
+      elementCenter.x =
         currentRef.getBoundingClientRect().x +
         currentRef.getBoundingClientRect().width / 2;
-      tempCoords.y =
+      elementCenter.y =
         currentRef.getBoundingClientRect().y +
         currentRef.getBoundingClientRect().height / 2;
 
-      setCoords(tempCoords);
+      setCoords(elementCenter);
 
       let newX = 0;
       let newY = 0;
@@ -105,16 +105,11 @@ const Box: React.FC<ShapeProps> = ({ containCenterCoords }) => {
         rotateX: 0,
         rotateY: 0,
         rotateZ: 0,
-        scale: 1,
-        // x: 0,
-        // y: 0,
         x: coords?.x,
         y: coords?.y,
       }}
       animate={{
         rotate: -360,
-
-        scale: 1,
         x: moveCoords?.x,
         y: moveCoords?.y,
         transition: {
@@ -125,18 +120,13 @@ const Box: React.FC<ShapeProps> = ({ containCenterCoords }) => {
         },
       }}
     >
-      <div className="center">
-        {/* {coords ? coords.x : null}
-        <br />
-        {coords ? coords.y : null} */}
-      </div>
+      <div className="center"></div>
     </Wrapper>
   );
 };
 export default Box;
 
 const Wrapper = styled.article`
-  /* border-radius: 50%; */
   background-color: lightgreen;
   position: relative;
   display: inline-block;

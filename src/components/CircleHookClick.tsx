@@ -51,8 +51,6 @@ const CircleHookClick: React.FC<ShapeProps> = ({ image }) => {
 export default CircleHookClick;
 
 const Wrapper = styled(motion.article)`
-  /* background-color: lightgreen; */
-
   position: relative;
   display: inline-block;
   height: 20px;
@@ -71,6 +69,5 @@ const Wrapper = styled(motion.article)`
   img {
     height: 100%;
     width: 100%;
-    z-index: 9999;
   }
 `;
