@@ -165,7 +165,7 @@ screenY = screen_height/2 - cartY
 - the issue was the original issue I identified when using slope of a line to do the same thing
   - the coordinates you move to are relative to the starting position of the element
 
-## To be fixed
+## To Do
 
 - ~~the further away from our grid of tiles we click, the less they move~~
   - ~~this isn't what I wanted~~
@@ -177,12 +177,10 @@ screenY = screen_height/2 - cartY
 - ~~resizing the window - update coords and window height & width~~
 - ~~if window height is greater than width, the height should be used as the value t in our parametrized line equation~~
 - ~~device rotation - handle changes for coords & width & height~~ DONE
-- clicking when the elements are already in motion should do one of the following:
-  - queue up another animation after the previous one finishes - harder
-  - reset the state to the start state and commence the new animation - easy
   - ~~warn the user that an animation is already in progress - easy~~ DONE
 - ~~rotating the device or resizing the window while the animation is in motion causes the following problems:~~
   - ~~new clicks are not used as the position from which to translate the elements, the old click position is used~~
+- if the y value of the click is equal to the y value of a column of elements, those elements do not move
 
 ## To be Added
 

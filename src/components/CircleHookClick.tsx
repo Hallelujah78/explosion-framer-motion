@@ -11,7 +11,7 @@ const CircleHookClick: React.FC<ShapeProps> = () => {
   const controls = useAnimationControls();
 
   useEffect(() => {
-    if (moveCoords?.x) {
+    if (moveCoords?.x !== undefined && moveCoords?.x !== null) {
       void controls.start("move").then(() => {
         setElementCenter();
         setIsAnimating(false);
