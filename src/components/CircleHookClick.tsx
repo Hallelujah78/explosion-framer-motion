@@ -4,7 +4,7 @@ import { useRef, useEffect } from "react";
 import { ShapeProps } from "../models/types";
 import useAnimateGridClick from "../hooks/useAnimateGridClick";
 
-const CircleHookClick: React.FC<ShapeProps> = () => {
+const CircleHookClick: React.FC<ShapeProps> = ({ image }) => {
   const selfRef = useRef<HTMLElement | null>(null);
   const { coords, setIsAnimating, moveCoords, setElementCenter } =
     useAnimateGridClick(selfRef);
@@ -43,13 +43,16 @@ const CircleHookClick: React.FC<ShapeProps> = () => {
       ref={selfRef}
       initial="start"
       animate={controls}
-    ></Wrapper>
+    >
+      <img src={image} alt="image piece" />
+    </Wrapper>
   );
 };
 export default CircleHookClick;
 
 const Wrapper = styled(motion.article)`
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
+
   position: relative;
   display: inline-block;
   height: 20px;
@@ -64,5 +67,10 @@ const Wrapper = styled(motion.article)`
     position: absolute;
     left: 0;
     bottom: 0;
+  }
+  img {
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
   }
 `;

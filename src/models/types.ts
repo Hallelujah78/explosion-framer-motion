@@ -6,6 +6,7 @@ export type Coords =
   | undefined;
 
 export interface ShapeProps {
+  image: string;
   content: number;
   containCenterCoords: Coords;
 }

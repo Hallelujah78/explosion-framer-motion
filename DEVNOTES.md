@@ -180,7 +180,7 @@ screenY = screen_height/2 - cartY
   - ~~warn the user that an animation is already in progress - easy~~ DONE
 - ~~rotating the device or resizing the window while the animation is in motion causes the following problems:~~
   - ~~new clicks are not used as the position from which to translate the elements, the old click position is used~~
-- if the y value of the click is equal to the y value of a column of elements, those elements do not move
+- ~~if the y value of the click is equal to the y value of a column of elements, those elements do not move~~ Fixed
 
 ## To be Added
 

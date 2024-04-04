@@ -7,7 +7,7 @@ import useAnimateGridClick from "../hooks/useAnimateGridClick";
 const CircleHook: React.FC<ShapeProps> = () => {
   const selfRef = useRef<HTMLElement | null>(null);
 
-  const [coords, moveCoords] = useAnimateGridClick(selfRef);
+  const { coords, moveCoords } = useAnimateGridClick(selfRef);
 
   return (
     <Wrapper

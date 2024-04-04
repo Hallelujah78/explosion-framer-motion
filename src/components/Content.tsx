@@ -1,17 +1,20 @@
 import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import kitten from "../assets/images/kitten.png";
 
 import CircleHookClick from "./CircleHookClick";
 import { boxes } from "../data/data";
 import { Coords } from "../models/types";
-
 const Content: React.FC = () => {
+  const myCanvas = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLElement | null>(null);
   const [containCenterCoords, setContainCenterCoords] = useState<Coords>();
+  const [imagePiece, setImagePiece] = useState<string[]>();
 
   useEffect(() => {
     const currentRef = containerRef.current;
+    const canvasRefCurr = myCanvas.current;
     const coords = { x: 0, y: 0 };
     if (currentRef) {
       const { x, y, width, height } = currentRef.getBoundingClientRect();
@@ -19,19 +22,57 @@ const Content: React.FC = () => {
       coords.y = y + height / 2;
       setContainCenterCoords(coords);
     }
+    const imagePieces: string[] = [];
+    const image = new Image();
+    image.src = kitten;
+    image.onload = () => {
+      for (let y = 0; y < 26; ++y) {
+        for (let x = 0; x < 39; ++x) {
+          if (canvasRefCurr) {
+            const context = canvasRefCurr.getContext("2d");
+
+            context!.drawImage(
+              image,
+              x * 20,
+              y * 20,
+              20,
+              20,
+              0,
+              0,
+              canvasRefCurr.width,
+              canvasRefCurr.height
+            );
+            imagePieces.push(canvasRefCurr.toDataURL());
+          }
+        }
+      }
+      setImagePiece(imagePieces);
+    };
   }, []);
 
   return (
     <Wrapper as={motion.section} ref={containerRef}>
       {boxes.map((content, index) => {
+        let image;
+        if (
+          imagePiece !== null &&
+          imagePiece !== undefined &&
+          imagePiece.length > 0
+        ) {
+          image = imagePiece[index];
+        } else {
+          image = "";
+        }
         return (
           <CircleHookClick
+            image={image}
             key={index}
             content={content}
             containCenterCoords={containCenterCoords}
           />
         );
       })}
+      <canvas ref={myCanvas} width={20} height={20} />
     </Wrapper>
   );
 };
@@ -45,4 +86,7 @@ const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   place-content: center;
+  canvas {
+    visibility: hidden;
+  }
 `;
