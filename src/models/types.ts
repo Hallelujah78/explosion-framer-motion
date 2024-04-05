@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type Coords =
   | {
       x: number;
@@ -10,4 +12,6 @@ export interface ShapeProps {
   content?: number;
   containCenterCoords?: Coords;
   clickCoords?: Coords;
+  isAnimating?: boolean;
+  setIsAnimating?: Dispatch<SetStateAction<boolean>>;
 }

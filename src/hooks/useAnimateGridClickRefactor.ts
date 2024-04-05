@@ -18,11 +18,11 @@ import { toast } from "react-toastify";
 
 const useAnimateGridClickRefactor = (
   selfRef: MutableRefObject<HTMLElement | null>,
-  clickCoords: Coords
+  clickCoords: Coords,
+  isAnimating: boolean | undefined
 ) => {
   const [coords, setCoords] = useState<Coords>();
   const [moveCoords, setMoveCoords] = useState<Coords>();
-  const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
   const setElementCenter = useCallback(() => {
     const currentRef = selfRef?.current;
@@ -45,10 +45,8 @@ const useAnimateGridClickRefactor = (
         toast("Animation is already in progress!", {
           toastId: "unique",
         });
-
         return;
       }
-      setIsAnimating(true);
 
       const currentRef = selfRef?.current;
 
@@ -61,8 +59,10 @@ const useAnimateGridClickRefactor = (
         }
       }
     };
-    calcMoveCoords();
-  }, [clickCoords, coords, selfRef]);
+    if (coords !== undefined) {
+      calcMoveCoords();
+    }
+  }, [clickCoords, coords, selfRef, isAnimating]);
 
   useEffect(() => {
     const resize = () => {
@@ -79,7 +79,7 @@ const useAnimateGridClickRefactor = (
     };
 
     window.addEventListener("resize", resize);
-    screen.orientation.addEventListener("rotate", rotate);
+    screen.orientation.addEventListener("change", rotate);
 
     return () => {
       window.removeEventListener("resize", resize);
@@ -87,7 +87,7 @@ const useAnimateGridClickRefactor = (
     };
   }, [coords, selfRef, isAnimating, setElementCenter]);
 
-  return { coords, setIsAnimating, moveCoords, setElementCenter };
+  return { coords, moveCoords, setElementCenter };
 };
 
 export default useAnimateGridClickRefactor;

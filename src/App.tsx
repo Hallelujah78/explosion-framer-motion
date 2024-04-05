@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Content from "./components/Content";
+import ContentRefactor from "./components/ContentRefactor";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -18,7 +18,7 @@ const App: React.FC = () => {
         pauseOnHover
         theme="dark"
       />
-      <Content />
+      <ContentRefactor />
     </Wrapper>
   );
 };

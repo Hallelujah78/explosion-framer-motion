@@ -22,9 +22,10 @@ const ContentRefactor: React.FC = () => {
   const containerRef = useRef<HTMLElement | null>(null);
   const [imagePiece, setImagePiece] = useState<string[]>();
   const [clickCoords, setClickCoords] = useState<Coords>();
-  //   const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
   const handleClick = (event: MouseEvent) => {
+    setIsAnimating(true);
     setClickCoords({ x: event.clientX, y: event.clientY });
   };
 
@@ -69,7 +70,7 @@ const ContentRefactor: React.FC = () => {
       {!imagePiece ? (
         <Loading />
       ) : (
-        boxes.map((index) => {
+        boxes.map((content, index) => {
           let image;
           if (
             imagePiece !== undefined &&
@@ -85,6 +86,8 @@ const ContentRefactor: React.FC = () => {
               image={image}
               key={index}
               clickCoords={clickCoords}
+              isAnimating={isAnimating}
+              setIsAnimating={setIsAnimating}
             />
           );
         })

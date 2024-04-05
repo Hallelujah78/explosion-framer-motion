@@ -7,20 +7,24 @@ import useAnimateGridClickRefactor from "../hooks/useAnimateGridClickRefactor";
 const TileHookClickRefactor: React.FC<ShapeProps> = ({
   image,
   clickCoords,
+
+  isAnimating,
 }) => {
   const selfRef = useRef<HTMLElement | null>(null);
-  const { coords, setIsAnimating, moveCoords, setElementCenter } =
-    useAnimateGridClickRefactor(selfRef, clickCoords);
+  const { coords, moveCoords, setElementCenter } = useAnimateGridClickRefactor(
+    selfRef,
+    clickCoords,
+    isAnimating
+  );
   const controls = useAnimationControls();
 
   useEffect(() => {
     if (moveCoords?.x !== undefined && moveCoords?.x !== null) {
       void controls.start("move").then(() => {
         setElementCenter();
-        setIsAnimating(false);
       });
     }
-  }, [moveCoords, controls, setIsAnimating, setElementCenter]);
+  }, [moveCoords, controls, setElementCenter]);
 
   const variants = {
     start: {

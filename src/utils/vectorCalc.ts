@@ -2,16 +2,16 @@ import { Coords } from "../models/types";
 import cartesianToScreen from "./cartesianToScreen";
 import screenToCartesian from "./screenToCartesian";
 
-const vectorCalc = (centerCoords: Coords, coords: Coords) => {
+const vectorCalc = (clickCoords: Coords, coords: Coords) => {
   const newPoint = { x: 0, y: 0 };
-  centerCoords;
-  const cartCenterCoords = screenToCartesian(centerCoords);
+
+  const cartClickCoords = screenToCartesian(clickCoords);
 
   const cartCoords = screenToCartesian(coords);
   let PQ;
-  if (coords !== undefined && cartCenterCoords !== undefined) {
+  if (coords !== undefined && cartClickCoords !== undefined) {
     const { x: x2, y: y2 } = cartCoords;
-    const { x: x1, y: y1 } = cartCenterCoords;
+    const { x: x1, y: y1 } = cartClickCoords;
 
     PQ = { a: x2 - x1, b: y2 - y1 };
 
