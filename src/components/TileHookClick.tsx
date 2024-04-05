@@ -4,7 +4,7 @@ import { useRef, useEffect } from "react";
 import { ShapeProps } from "../models/types";
 import useAnimateGridClick from "../hooks/useAnimateGridClick";
 
-const CircleHookClick: React.FC<ShapeProps> = ({ image }) => {
+const TileHookClick: React.FC<ShapeProps> = ({ image }) => {
   const selfRef = useRef<HTMLElement | null>(null);
   const { coords, setIsAnimating, moveCoords, setElementCenter } =
     useAnimateGridClick(selfRef);
@@ -48,7 +48,7 @@ const CircleHookClick: React.FC<ShapeProps> = ({ image }) => {
     </Wrapper>
   );
 };
-export default CircleHookClick;
+export default TileHookClick;
 
 const Wrapper = styled(motion.article)`
   position: relative;

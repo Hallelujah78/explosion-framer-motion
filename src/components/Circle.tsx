@@ -33,20 +33,11 @@ const Circle: React.FC<ShapeProps> = ({ containCenterCoords }) => {
       ref={selfRef}
       as={motion.article}
       initial={{
-        rotate: 0,
-        rotateX: 0,
-        rotateY: 0,
-        rotateZ: 0,
-        scale: 1,
-        // x: 0,
-        // y: 0,
         x: coords?.x,
         y: coords?.y,
       }}
       animate={{
         rotate: -360,
-
-        scale: 1,
         x: moveCoords?.x,
         y: moveCoords?.y,
         transition: {
@@ -56,13 +47,7 @@ const Circle: React.FC<ShapeProps> = ({ containCenterCoords }) => {
           repeatType: "reverse",
         },
       }}
-    >
-      <div className="center">
-        {/* {coords ? coords.x : null}
-        <br />
-        {coords ? coords.y : null} */}
-      </div>
-    </Wrapper>
+    ></Wrapper>
   );
 };
 export default Circle;

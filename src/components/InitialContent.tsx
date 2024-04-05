@@ -12,13 +12,15 @@ import kitten from "../assets/images/kitten.png";
 import Loading from "./Loading";
 import TileHookClick from "./TileHookClick";
 import Box from "./Box";
+import Circle from "./Circle";
+import CircleHook from "./CircleHook";
 
 import { boxes } from "../data/data";
 
 // models
 import { Coords } from "../models/types";
 
-const Content: React.FC = () => {
+const InitialContent: React.FC = () => {
   const myCanvas = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLElement | null>(null);
   const [containCenterCoords, setContainCenterCoords] = useState<Coords>();
@@ -64,35 +66,31 @@ const Content: React.FC = () => {
 
   return (
     <Wrapper as={motion.section} ref={containerRef}>
-      {!imagePiece ? (
-        <Loading />
-      ) : (
-        boxes.map((content, index) => {
-          let image;
-          if (
-            imagePiece !== undefined &&
-            imagePiece !== null &&
-            imagePiece.length > 0
-          ) {
-            image = imagePiece[index];
-          } else {
-            image = "";
-          }
-          return (
-            <TileHookClick
-              image={image}
-              key={index}
-              content={content}
-              containCenterCoords={containCenterCoords}
-            />
-          );
-        })
-      )}
+      {boxes.map((content, index) => {
+        let image;
+        if (
+          imagePiece !== undefined &&
+          imagePiece !== null &&
+          imagePiece.length > 0
+        ) {
+          image = imagePiece[index];
+        } else {
+          image = "";
+        }
+        return (
+          <CircleHook
+            image={image}
+            key={index}
+            content={content}
+            containCenterCoords={containCenterCoords}
+          />
+        );
+      })}
       <canvas ref={myCanvas} width={20} height={20} />
     </Wrapper>
   );
 };
-export default Content;
+export default InitialContent;
 
 const Wrapper = styled.section`
   position: relative;

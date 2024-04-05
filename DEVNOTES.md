@@ -169,7 +169,7 @@ screenY = screen_height/2 - cartY
 
 - before images load, we should display some loading message on first load
 - the isAnimating state should not be local to each of our 1014
-  CircleHookClick elements. This may be a pain to refactor, but we really only need one piece of state for this.
+  TileHookClick elements. This may be a pain to refactor, but we really only need one piece of state for this.
 - clean up code, remove commented out code
 
 ## To be Added

@@ -1,3 +1,4 @@
+// react
 import {
   useState,
   useEffect,
@@ -5,9 +6,14 @@ import {
   useLayoutEffect,
   MutableRefObject,
 } from "react";
+
+// models
 import { Coords } from "../models/types";
 
+// utils
 import vectorCalc from "../utils/vectorCalc";
+
+// libs
 import { toast } from "react-toastify";
 
 const useAnimateGridClick = (selfRef: MutableRefObject<HTMLElement | null>) => {

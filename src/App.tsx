@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Content from "./components/Content";
+import InitialContent from "./components/InitialContent";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

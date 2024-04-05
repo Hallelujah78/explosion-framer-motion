@@ -80,8 +80,6 @@ const animateGrid = (
         newY = -variance * 500;
       } else {
         newY = variance * 500;
-
-        // coords!.y;
       }
       // newY = newY - coords!.x;
     } else if (slope === 0 && coords!.x > containX && coords!.y === containY) {
