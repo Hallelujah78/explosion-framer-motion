@@ -7,6 +7,7 @@ export type Coords =
 
 export interface ShapeProps {
   image: string;
-  content: number;
-  containCenterCoords: Coords;
+  content?: number;
+  containCenterCoords?: Coords;
+  clickCoords?: Coords;
 }

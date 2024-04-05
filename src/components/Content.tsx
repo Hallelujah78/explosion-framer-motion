@@ -11,7 +11,6 @@ import kitten from "../assets/images/kitten.png";
 // components
 import Loading from "./Loading";
 import TileHookClick from "./TileHookClick";
-import Box from "./Box";
 
 import { boxes } from "../data/data";
 

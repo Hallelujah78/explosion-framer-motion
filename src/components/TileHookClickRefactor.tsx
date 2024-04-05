@@ -2,12 +2,15 @@ import styled from "styled-components";
 import { motion, useAnimationControls } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { ShapeProps } from "../models/types";
-import useAnimateGridClick from "../hooks/useAnimateGridClick";
+import useAnimateGridClickRefactor from "../hooks/useAnimateGridClickRefactor";
 
-const TileHookClick: React.FC<ShapeProps> = ({ image }) => {
+const TileHookClickRefactor: React.FC<ShapeProps> = ({
+  image,
+  clickCoords,
+}) => {
   const selfRef = useRef<HTMLElement | null>(null);
   const { coords, setIsAnimating, moveCoords, setElementCenter } =
-    useAnimateGridClick(selfRef);
+    useAnimateGridClickRefactor(selfRef, clickCoords);
   const controls = useAnimationControls();
 
   useEffect(() => {
@@ -48,7 +51,7 @@ const TileHookClick: React.FC<ShapeProps> = ({ image }) => {
     </Wrapper>
   );
 };
-export default TileHookClick;
+export default TileHookClickRefactor;
 
 const Wrapper = styled(motion.article)`
   position: relative;

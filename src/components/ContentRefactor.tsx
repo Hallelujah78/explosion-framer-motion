@@ -9,30 +9,30 @@ import { motion } from "framer-motion";
 import kitten from "../assets/images/kitten.png";
 
 // components
-
-import Circle from "./Circle";
+import Loading from "./Loading";
 
 import { boxes } from "../data/data";
 
 // models
 import { Coords } from "../models/types";
+import TileHookClickRefactor from "./TileHookClickRefactor";
 
-const InitialContent: React.FC = () => {
+const ContentRefactor: React.FC = () => {
   const myCanvas = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLElement | null>(null);
-  const [containCenterCoords, setContainCenterCoords] = useState<Coords>();
   const [imagePiece, setImagePiece] = useState<string[]>();
+  const [clickCoords, setClickCoords] = useState<Coords>();
+  //   const [isAnimating, setIsAnimating] = useState<boolean>(false);
+
+  const handleClick = (event: MouseEvent) => {
+    setClickCoords({ x: event.clientX, y: event.clientY });
+  };
 
   useEffect(() => {
-    const currentRef = containerRef.current;
+    window.addEventListener("click", handleClick);
+
     const canvasRefCurr = myCanvas.current;
-    const coords = { x: 0, y: 0 };
-    if (currentRef) {
-      const { x, y, width, height } = currentRef.getBoundingClientRect();
-      coords.x = x + width / 2;
-      coords.y = y + height / 2;
-      setContainCenterCoords(coords);
-    }
+
     const imagePieces: string[] = [];
     const image = new Image();
     image.src = kitten;
@@ -59,35 +59,41 @@ const InitialContent: React.FC = () => {
       }
       setImagePiece(imagePieces);
     };
+    return () => {
+      window.removeEventListener("click", handleClick);
+    };
   }, []);
 
   return (
     <Wrapper as={motion.section} ref={containerRef}>
-      {boxes.map((content, index) => {
-        let image;
-        if (
-          imagePiece !== undefined &&
-          imagePiece !== null &&
-          imagePiece.length > 0
-        ) {
-          image = imagePiece[index];
-        } else {
-          image = "";
-        }
-        return (
-          <Circle
-            image={image}
-            key={index}
-            content={content}
-            containCenterCoords={containCenterCoords}
-          />
-        );
-      })}
+      {!imagePiece ? (
+        <Loading />
+      ) : (
+        boxes.map((index) => {
+          let image;
+          if (
+            imagePiece !== undefined &&
+            imagePiece !== null &&
+            imagePiece.length > 0
+          ) {
+            image = imagePiece[index];
+          } else {
+            image = "";
+          }
+          return (
+            <TileHookClickRefactor
+              image={image}
+              key={index}
+              clickCoords={clickCoords}
+            />
+          );
+        })
+      )}
       <canvas ref={myCanvas} width={20} height={20} />
     </Wrapper>
   );
 };
-export default InitialContent;
+export default ContentRefactor;
 
 const Wrapper = styled.section`
   position: relative;

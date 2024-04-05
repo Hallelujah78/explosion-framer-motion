@@ -167,10 +167,15 @@ screenY = screen_height/2 - cartY
 
 ## To Do
 
-- before images load, we should display some loading message on first load
 - the isAnimating state should not be local to each of our 1014
   TileHookClick elements. This may be a pain to refactor, but we really only need one piece of state for this.
 - clean up code, remove commented out code
+- we are adding event listeners for all of our 1014 elements?
+- the click functionality should be external to our hook, with the coords passed in
+- steps to refactor:
+  - the event listeners should be in the Content.tsx
+  - the click coords get passed to our hook and are used to calculate move coords
+  
 
 ## To be Added
 
@@ -178,4 +183,3 @@ screenY = screen_height/2 - cartY
   - change the t value
   - change the number of elements and the grid structure
   - border radius, rotation, etc
-- look at canvas, set portions of an image to the background of each element, then we have an exploding picture
