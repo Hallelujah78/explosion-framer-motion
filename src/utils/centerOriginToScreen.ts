@@ -3,7 +3,7 @@ import { Coords } from "../models/types";
 const centerOriginToScreen = (coords: Coords): Coords => {
   // screenX = centerOriginX + screenWidth/2
   // screenY = screenHeight / 2 - centerOriginY;
-  let screenCoords;
+  let screenCoords: Coords;
   if (coords !== undefined) {
     screenCoords = {
       x: Math.round(coords.x + window.innerWidth / 2),

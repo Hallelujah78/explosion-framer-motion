@@ -5,7 +5,7 @@
     <br/>
     <br/>
     <br />
-    Grid Animation
+    Grid Animation aka Exploding Kitten
     <br />
     <br />
     <br />
@@ -26,7 +26,7 @@
 
   <p align="left">The nice thing about using vector math, which I had never encountered before this project, is that we don't have to use confusing else-if blocks to handle all of the different possibilities for the direction we want our element to be translated.</p>
   <p align="left">In addition to using vector math, I decided it would be cool if, instead of animating colored circles or squares, we could animate an image. I basically chop up an image of a cat, obviously, using canvas and pass the data URL to each element. We also handle window resizing, device orientation change, and the user attempting to trigger a new animation while an animation is currently playing.</p>
-  
+  <p align="left">Yet another refactor, I added TileHookClickRefactor, ContentRefactor, and useAnimateGridClickRefactor. The isAnimating state is moved out of the hook and placed in ContentRefactor. The click handler is also moved into ContentRefactor.</p>
   </section>
 </div>
 <h1 align="center">Could This Be Useful to You?</h1>
@@ -44,4 +44,4 @@
 <h1 align="center">Contributors</h1>
 <p>Just lil old me.</p>
 <h1 align="center">Learnings</h1>
-<p>Learned enough vector math to make it work. Also learned a little about framer motion, how to start an animation with a click, the fact that animations are thenable so you can run more code after the animation is finished. How to convert coords such that your origin is the center of the screen. How to use the canvas element to chop up an image into a bunch of data URLs. Cemented some knowledge in using Framer Motion and TypeScript.</p>
+<p>Learned enough vector math to make it work. Also learned a little about framer motion, how to start an animation with a click, the fact that animations are thenable so you can run more code after the animation is finished. How to convert coords such that your origin is the center of the screen. How to use the canvas element to chop up an image into a bunch of data URLs. Cemented some knowledge in using framer motion and TypeScript.</p>
