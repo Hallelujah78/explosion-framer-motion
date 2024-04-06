@@ -29,7 +29,7 @@
 
 - if we have the x, y coord of the center point of the container - call it c-x and c-y
 - we get the center point of each box, call it b-x and b-y
-- we say that c-x and c-y are 0,0 in a cartesian grid
+- we say that c-x and c-y are 0,0 in a center origin grid
 - we translate each b-x, b-y coord to our 0,0 grid
 - now we can calculate the x, y coords that we might want to translate the center of our box to, to move it offscreen
 - we have some scenarios
@@ -128,15 +128,15 @@ f(t) = A + t\*N
 
 ## Convert screen coordinates to a different origin (center of screen)
 
-screenX = cartX + screenWidth/2
-screenY = screenHeight/2 - cartY
+screenX = centerOriginX + screenWidth/2
+screenY = screenHeight/2 - centerOriginY
 
-=> -cartX = screenWidth/2 - screenX
-=> cartX = screenX - screenWidth/2 // this!
+=> -centerOriginX = screenWidth/2 - screenX
+=> centerOriginX = screenX - screenWidth/2 // this!
 
-=> cartY = screenHiehgt/2 - screenY
+=> centerOriginY = screenHiehgt/2 - screenY
 
-- note, this sets 0,0 in cartesian coords to center of screen!
+- note, this sets 0,0 in center origin coords to center of screen!
 
 ## Using our vector calc with our coord conversion
 
@@ -150,32 +150,24 @@ screenY = screenHeight/2 - cartY
 
 - clicking to the bottom right hand side of our element actually causes it to go directly upwards
 
-screenX = cartX + screen_width/2
-=> cartX = screenX - screenWidth/2
-=> cartX = screenX - screenWidth/2
+screenX = centerOriginX + screen_width/2
+=> centerOriginX = screenX - screenWidth/2
+=> centerOriginX = screenX - screenWidth/2
 
-screenY = screen_height/2 - cartY
-=> cartY = screenHeight/2 - screenY
+screenY = screen_height/2 - centerOriginY
+=> centerOriginY = screenHeight/2 - screenY
 
 ## Troubleshooting vector calculation woes
 
-- logging the center of an element's screen coords before conversion to cartesian and then after it is converted from cartesian to screen coords shows that the conversion is occurring correctly
-  - converting from Cartesian (or more properly where the origin is the center of the screen) perfectly reverses the conversion to Cartesian
+- logging the center of an element's screen coords before conversion to center origin and then after it is converted from center origin to screen coords shows that the conversion is occurring correctly
+  - converting from center origin (or more properly where the origin is the center of the screen) perfectly reverses the conversion to center origin
 - vector calculation was fine
 - the issue was the original issue I identified when using slope of a line to do the same thing
   - the coordinates you move to are relative to the starting position of the element
 
 ## To Do
 
-- the isAnimating state should not be local to each of our 1014
-  TileHookClick elements. This may be a pain to refactor, but we really only need one piece of state for this.
 - clean up code, remove commented out code
-- we are adding event listeners for all of our 1014 elements?
-- the click functionality should be external to our hook, with the coords passed in
-- steps to refactor:
-  - the event listeners should be in the Content.tsx
-  - the click coords get passed to our hook and are used to calculate move coords
-  
 
 ## To be Added
 

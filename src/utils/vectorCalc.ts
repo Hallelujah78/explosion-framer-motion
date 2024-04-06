@@ -1,16 +1,16 @@
 import { Coords } from "../models/types";
-import cartesianToScreen from "./cartesianToScreen";
-import screenToCartesian from "./screenToCartesian";
+import centerOriginToScreen from "./centerOriginToScreen";
+import screenTocenterOrigin from "./screenToCenterOrigin";
 
 const vectorCalc = (clickCoords: Coords, coords: Coords) => {
   const newPoint = { x: 0, y: 0 };
 
-  const cartClickCoords = screenToCartesian(clickCoords);
+  const cartClickCoords = screenTocenterOrigin(clickCoords);
 
-  const cartCoords = screenToCartesian(coords);
+  const centerOriginCoords = screenTocenterOrigin(coords);
   let PQ;
-  if (cartCoords !== undefined && cartClickCoords !== undefined) {
-    const { x: x2, y: y2 } = cartCoords;
+  if (centerOriginCoords !== undefined && cartClickCoords !== undefined) {
+    const { x: x2, y: y2 } = centerOriginCoords;
     const { x: x1, y: y1 } = cartClickCoords;
 
     PQ = { a: x2 - x1, b: y2 - y1 };
@@ -31,17 +31,17 @@ const vectorCalc = (clickCoords: Coords, coords: Coords) => {
     if (screen.height > screen.width) {
       distance = window.outerHeight;
     }
-    newPoint.x = cartCoords.x + distance * normDirVector.a;
-    newPoint.y = cartCoords.y + distance * normDirVector.b;
+    newPoint.x = centerOriginCoords.x + distance * normDirVector.a;
+    newPoint.y = centerOriginCoords.y + distance * normDirVector.b;
 
     newPoint.x = Math.round(
-      cartesianToScreen({
+      centerOriginToScreen({
         x: newPoint.x,
         y: newPoint.y,
       })!.x
     );
     newPoint.y = Math.round(
-      cartesianToScreen({
+      centerOriginToScreen({
         x: newPoint.x,
         y: newPoint.y,
       })!.y

@@ -10,8 +10,9 @@ const Loading: React.FC = () => {
 export default Loading;
 
 const Wrapper = styled.div`
+  color: white;
   position: absolute;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: grid;
   place-content: center;

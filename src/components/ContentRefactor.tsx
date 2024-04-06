@@ -20,30 +20,18 @@ import TileHookClickRefactor from "./TileHookClickRefactor";
 
 const ContentRefactor: React.FC = () => {
   const myCanvas = useRef<HTMLCanvasElement | null>(null);
-  const containerRef = useRef<HTMLElement | null>(null);
   const [imagePiece, setImagePiece] = useState<string[]>();
   const [clickCoords, setClickCoords] = useState<Coords>();
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
-  const handleClick = useCallback(
-    (event: MouseEvent) => {
-      if (isAnimating) {
-        toast("Animation is already in progress!", {
-          toastId: "unique",
-        });
-        return;
-      }
-      setIsAnimating(true);
-      setClickCoords({ x: event.clientX, y: event.clientY });
-    },
-    [isAnimating]
-  );
+  useEffect(() => {
+    if (imagePiece) {
+      toast("Click on the screen to see an animation!");
+    }
+  }, [imagePiece]);
 
   useEffect(() => {
-    window.addEventListener("click", handleClick);
-
     const canvasRefCurr = myCanvas.current;
-
     const imagePieces: string[] = [];
     const image = new Image();
     image.src = kitten;
@@ -52,7 +40,6 @@ const ContentRefactor: React.FC = () => {
         for (let x = 0; x < 39; ++x) {
           if (canvasRefCurr) {
             const context = canvasRefCurr.getContext("2d");
-
             context!.drawImage(
               image,
               x * 20,
@@ -70,13 +57,29 @@ const ContentRefactor: React.FC = () => {
       }
       setImagePiece(imagePieces);
     };
-    return () => {
-      window.removeEventListener("click", handleClick);
-    };
+  }, []);
+
+  const handleClick = useCallback(
+    (event: MouseEvent) => {
+      if (isAnimating) {
+        toast("Animation is already in progress!", {
+          toastId: "unique",
+        });
+        return;
+      }
+      setIsAnimating(true);
+      setClickCoords({ x: event.clientX, y: event.clientY });
+    },
+    [isAnimating]
+  );
+
+  useEffect(() => {
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
   }, [handleClick]);
 
   return (
-    <Wrapper as={motion.section} ref={containerRef}>
+    <Wrapper as={motion.section}>
       {!imagePiece ? (
         <Loading />
       ) : (

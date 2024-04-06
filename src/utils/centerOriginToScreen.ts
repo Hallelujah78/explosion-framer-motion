@@ -1,8 +1,8 @@
 import { Coords } from "../models/types";
 
-const cartesianToScreen = (coords: Coords): Coords => {
-  // screenX = cartX + screenWidth/2
-  // screenY = screenHeight / 2 - cartY;
+const centerOriginToScreen = (coords: Coords): Coords => {
+  // screenX = centerOriginX + screenWidth/2
+  // screenY = screenHeight / 2 - centerOriginY;
   let screenCoords;
   if (coords !== undefined) {
     screenCoords = {
@@ -11,8 +11,7 @@ const cartesianToScreen = (coords: Coords): Coords => {
     };
     return screenCoords;
   } else {
-    //
+    return coords;
   }
-  // throw new Error("coords are undefined");
 };
-export default cartesianToScreen;
+export default centerOriginToScreen;
