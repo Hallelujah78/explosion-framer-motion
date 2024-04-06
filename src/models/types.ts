@@ -12,6 +12,10 @@ export interface ShapeProps {
   content?: number;
   containCenterCoords?: Coords;
   clickCoords?: Coords;
-  isAnimating?: boolean;
+
   setIsAnimating?: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface ShapeClickProps extends ShapeProps {
+  isAnimating: boolean;
 }

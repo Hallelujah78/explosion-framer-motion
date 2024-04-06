@@ -9,7 +9,7 @@ const vectorCalc = (clickCoords: Coords, coords: Coords) => {
 
   const cartCoords = screenToCartesian(coords);
   let PQ;
-  if (coords !== undefined && cartClickCoords !== undefined) {
+  if (cartCoords !== undefined && cartClickCoords !== undefined) {
     const { x: x2, y: y2 } = cartCoords;
     const { x: x1, y: y1 } = cartClickCoords;
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Loading: React.FC = () => {
   return (
     <Wrapper>
-      <h1>Coolness incoming...</h1>
+      <h1>Cuteness incoming...</h1>
     </Wrapper>
   );
 };

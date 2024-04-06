@@ -10,7 +10,10 @@ function screenToCartesian(coords: Coords) {
       y: Math.round(window.innerHeight / 2 - coords.y),
     };
     return cartesianCoords;
-  } else throw new Error("coords undefined");
+  } else {
+    //
+  }
+  // throw new Error("coords undefined");
 }
 
 export default screenToCartesian;

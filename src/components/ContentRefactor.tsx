@@ -1,9 +1,10 @@
 // react
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 // libs
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 
 // assets
 import kitten from "../assets/images/kitten.png";
@@ -24,10 +25,19 @@ const ContentRefactor: React.FC = () => {
   const [clickCoords, setClickCoords] = useState<Coords>();
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
-  const handleClick = (event: MouseEvent) => {
-    setIsAnimating(true);
-    setClickCoords({ x: event.clientX, y: event.clientY });
-  };
+  const handleClick = useCallback(
+    (event: MouseEvent) => {
+      if (isAnimating) {
+        toast("Animation is already in progress!", {
+          toastId: "unique",
+        });
+        return;
+      }
+      setIsAnimating(true);
+      setClickCoords({ x: event.clientX, y: event.clientY });
+    },
+    [isAnimating]
+  );
 
   useEffect(() => {
     window.addEventListener("click", handleClick);
@@ -63,14 +73,14 @@ const ContentRefactor: React.FC = () => {
     return () => {
       window.removeEventListener("click", handleClick);
     };
-  }, []);
+  }, [handleClick]);
 
   return (
     <Wrapper as={motion.section} ref={containerRef}>
       {!imagePiece ? (
         <Loading />
       ) : (
-        boxes.map((content, index) => {
+        boxes.map((_, index) => {
           let image;
           if (
             imagePiece !== undefined &&

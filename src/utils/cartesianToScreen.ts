@@ -10,6 +10,9 @@ const cartesianToScreen = (coords: Coords): Coords => {
       y: Math.round(window.innerHeight / 2 - coords.y),
     };
     return screenCoords;
-  } else throw new Error("coords are undefined");
+  } else {
+    //
+  }
+  // throw new Error("coords are undefined");
 };
 export default cartesianToScreen;

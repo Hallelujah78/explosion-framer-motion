@@ -13,13 +13,10 @@ import { Coords } from "../models/types";
 // utils
 import vectorCalc from "../utils/vectorCalc";
 
-// libs
-import { toast } from "react-toastify";
-
 const useAnimateGridClickRefactor = (
   selfRef: MutableRefObject<HTMLElement | null>,
   clickCoords: Coords,
-  isAnimating: boolean | undefined
+  isAnimating: boolean
 ) => {
   const [coords, setCoords] = useState<Coords>();
   const [moveCoords, setMoveCoords] = useState<Coords>();
@@ -41,13 +38,6 @@ const useAnimateGridClickRefactor = (
 
   useEffect(() => {
     const calcMoveCoords = () => {
-      if (isAnimating) {
-        toast("Animation is already in progress!", {
-          toastId: "unique",
-        });
-        return;
-      }
-
       const currentRef = selfRef?.current;
 
       if (currentRef && coords) {
@@ -62,7 +52,8 @@ const useAnimateGridClickRefactor = (
     if (coords !== undefined) {
       calcMoveCoords();
     }
-  }, [clickCoords, coords, selfRef, isAnimating]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clickCoords, selfRef]);
 
   useEffect(() => {
     const resize = () => {

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { motion, useAnimationControls } from "framer-motion";
 import { useRef, useEffect } from "react";
-import { ShapeProps } from "../models/types";
+import { ShapeClickProps } from "../models/types";
 import useAnimateGridClickRefactor from "../hooks/useAnimateGridClickRefactor";
 
-const TileHookClickRefactor: React.FC<ShapeProps> = ({
+const TileHookClickRefactor: React.FC<ShapeClickProps> = ({
   image,
   clickCoords,
-
+  setIsAnimating,
   isAnimating,
 }) => {
   const selfRef = useRef<HTMLElement | null>(null);
@@ -22,9 +22,13 @@ const TileHookClickRefactor: React.FC<ShapeProps> = ({
     if (moveCoords?.x !== undefined && moveCoords?.x !== null) {
       void controls.start("move").then(() => {
         setElementCenter();
+        if (isAnimating) {
+          setIsAnimating!(false);
+        }
       });
     }
-  }, [moveCoords, controls, setElementCenter]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [moveCoords, controls, setElementCenter, setIsAnimating]);
 
   const variants = {
     start: {
