@@ -22,9 +22,7 @@ const TileHookClickRefactor: React.FC<ShapeClickProps> = ({
     if (moveCoords?.x !== undefined && moveCoords?.x !== null) {
       void controls.start("move").then(() => {
         setElementCenter();
-        if (isAnimating) {
-          setIsAnimating!(false);
-        }
+        isAnimating && setIsAnimating!(false);
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

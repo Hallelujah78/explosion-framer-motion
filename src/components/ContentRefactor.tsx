@@ -109,6 +109,7 @@ const ContentRefactor: React.FC = () => {
 export default ContentRefactor;
 
 const Wrapper = styled.section`
+  user-select: none;
   position: relative;
   min-height: 80vh;
   width: fit-content;
